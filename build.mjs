@@ -72,7 +72,6 @@ export const renderPage = (title, html, file = 'index.md') => {
     </div>
     <nav class="top-nav" aria-label="Navigation principale">
       <a href="${homeHref}">${homeLabel}</a>
-      <a href="${postsHref}">${postsLabel}</a>
       <a href="${aboutHref}">${aboutLabel}</a>
     </nav>
   </header>

@@ -25,10 +25,10 @@ test('keeps nested post output under public posts folder', () => {
   assert.equal(getOutputPath('posts/premier-signal.md'), 'public/posts/premier-signal.html')
 })
 
-test('renders posts nav link', () => {
+test('does not render posts nav link yet', () => {
   const page = renderPage('test', '<h1>test</h1>')
 
-  assert.match(page, /href="\/posts.html"/)
+  assert.doesNotMatch(page, /href="\/posts.html"/)
 })
 
 
@@ -59,7 +59,7 @@ test('french page renders translated navigation', () => {
   const page = renderPage('Projets', '<h1>Projets</h1>', 'fr/index.md')
 
   assert.match(page, /<html lang="fr">/)
-  assert.match(page, /href="\/fr\/posts\.html">articles/)
+  assert.doesNotMatch(page, /href="\/fr\/posts\.html">articles/)
   assert.match(page, /class="active">FR/)
   assert.match(page, /Grenoble, France/)
   assert.match(page, /class="ascii-name"/)
