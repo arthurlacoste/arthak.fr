@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { getOutputName, getOutputPath, getTitle, renderPage } from '../build.mjs'
+import { getOutputName, getOutputPath, getTitle, parseFrontmatter, renderPage } from '../build.mjs'
 
 test('extracts first markdown h1 as title', () => {
   assert.equal(getTitle('# arthak\n\ncontent'), 'arthak')
@@ -86,4 +86,22 @@ test('card images are clickable and copied', async () => {
   assert.match(markdown, /arthak-tattoo\.webp/)
   assert.match(markdown, /studio-pixel\.webp/)
   assert.match(css, /\.card-image/)
+})
+
+test('posts index source files are generated at build time', async () => {
+  const fs = await import('node:fs/promises')
+
+  await assert.rejects(fs.access('src/posts.md'))
+  await assert.rejects(fs.access('src/fr/posts.md'))
+})
+
+test('frontmatter parser extracts metadata and body', async () => {
+  const fs = await import('node:fs/promises')
+  const markdown = await fs.readFile('src/fr/posts/26-07-07-pong.md', 'utf8')
+  const [data, body] = parseFrontmatter(markdown)
+
+  assert.equal(data.title, 'Pong 2009')
+  assert.equal(data.date, '2026-07-07')
+  assert.doesNotMatch(body, /title: Pong 2009/)
+  assert.match(body, /sortie/)
 })

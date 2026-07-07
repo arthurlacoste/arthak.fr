@@ -34,6 +34,74 @@ const getAlternateUrl = file => {
   return '/fr/' + getOutputName(file)
 }
 
+
+export const parseFrontmatter = markdown => {
+  if (!markdown.startsWith('---\n')) return [{}, markdown]
+
+  const end = markdown.indexOf('\n---\n', 4)
+  if (end === -1) return [{}, markdown]
+
+  const frontmatter = markdown.slice(4, end).trim().split('\n')
+  const data = {}
+
+  for (const line of frontmatter) {
+    const separator = line.indexOf(':')
+    if (separator === -1) continue
+    const key = line.slice(0, separator).trim()
+    const value = line.slice(separator + 1).trim()
+    data[key] = value
+  }
+
+  return [data, markdown.slice(end + 5).trimStart()]
+}
+
+export const stripFrontmatter = markdown => parseFrontmatter(markdown)[1]
+
+const formatDate = date => date || ''
+
+const getPostUrl = file => '/' + getOutputName(file)
+
+const getPostMeta = async file => {
+  const markdown = await readFile(path.join(sourceDir, file), 'utf8')
+  const [data, body] = parseFrontmatter(markdown)
+  const title = data.title || getTitle(body)
+  const firstParagraph = body
+    .split('\n\n')
+    .find(block => !block.trim().startsWith('#'))
+    ?.replace(/\n/g, ' ')
+    ?.replace(/[#*_`[\]()]/g, '')
+    ?.trim()
+
+  return {
+    file,
+    title,
+    date: data.date || '',
+    excerpt: data.excerpt || firstParagraph || '',
+    url: getPostUrl(file),
+  }
+}
+
+const renderPostsIndex = async isFrench => {
+  const prefix = isFrench ? 'fr/posts/' : 'posts/'
+  const files = (await listMarkdownFiles())
+    .filter(file => file.startsWith(prefix))
+    .filter(file => file !== 'posts.md' && file !== 'fr/posts.md')
+
+  const posts = await Promise.all(files.map(getPostMeta))
+  posts.sort((a, b) => (b.date || '').localeCompare(a.date || '') || a.title.localeCompare(b.title))
+
+  const title = isFrench ? 'Articles' : 'Posts'
+  const intro = isFrench
+    ? 'Notes courtes. Markdown brut. HTML généré.'
+    : 'Short notes. Raw Markdown. Generated HTML.'
+
+  const items = posts.length
+    ? posts.map(post => `- **[${post.title}](${post.url})**  \n  ${post.date ? `${formatDate(post.date)}. ` : ''}${post.excerpt}`).join('\n\n')
+    : isFrench ? 'Aucun article pour le moment.' : 'No posts yet.'
+
+  return `# ${title}\n\n${intro}\n\n${items}\n`
+}
+
 export const renderPage = (title, html, file = 'index.md') => {
   const isFrench = file.startsWith('fr/')
   const lang = isFrench ? 'fr' : 'en'
@@ -123,7 +191,21 @@ export async function buildSite() {
   const markdownFiles = await listMarkdownFiles()
 
   for (const file of markdownFiles) {
+    if (file === 'posts.md' || file === 'fr/posts.md') continue
+
     const markdown = await readFile(path.join(sourceDir, file), 'utf8')
+    const [data, bodyMarkdown] = parseFrontmatter(markdown)
+    const title = data.title || getTitle(bodyMarkdown)
+    const body = marked(bodyMarkdown)
+    const page = renderPage(title, body, file)
+    const outputPath = getOutputPath(file)
+
+    await mkdir(path.dirname(outputPath), { recursive: true })
+    await writeFile(outputPath, page)
+  }
+
+  for (const [file, isFrench] of [['posts.md', false], ['fr/posts.md', true]]) {
+    const markdown = await renderPostsIndex(isFrench)
     const title = getTitle(markdown)
     const body = marked(markdown)
     const page = renderPage(title, body, file)

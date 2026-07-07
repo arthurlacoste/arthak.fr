@@ -1,13 +1,19 @@
+---
+title: Premier signal
+date: 2026-07-07
+excerpt: A first short note to test the post system.
+---
+
 # Premier signal
 
-Il y a une page verte.  
-Un curseur imaginaire.  
-Et un vieux réflexe de terminal.
+There is a green page.  
+An imaginary cursor.  
+And an old terminal reflex.
 
-Le site part de là.
+The site starts there.
 
-Pas de CMS.  
-Pas de grosse machine.  
-Juste du Markdown qui devient du HTML.
+No CMS.  
+No big machine.  
+Just Markdown becoming HTML.
 
-Ça suffit pour commencer.
+Enough to begin.
