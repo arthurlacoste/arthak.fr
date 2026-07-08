@@ -14,6 +14,7 @@
 
 ## Anciens projets
 
+- **[IRZ](https://archives.irz.fr/)** — Un blog personnel et un terrain de jeu pour mes expérimentations, outils et projets.
 
 - 🚲 **[Vivre sans voiture](https://sansvoiture.fr/)** — Un livre qui tente de cerner les manières de vivre ses déplacements sans que la voiture soit la première option.
 - 🎭 **[Vakarm](http://vakarm2007.free.fr/)** — Une pièce de théâtre que j’ai créée en 2007.
