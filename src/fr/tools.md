@@ -1,94 +1,113 @@
 # Tools
 
-Une liste de mes outils du moment.
-Pas une vitrine parfaite.
-Plutôt l'établi réel: les apps ouvertes souvent, les services qui tiennent le studio, les trucs de podcast, les CLI qui traînent dans le terminal.
+Voici les applications que j'utilise au quotidien pour mes projets, mes sites, mes scripts et mes expérimentations. C'est un mix d'outils de dev, de design, de productivité et d'analyse.
 
-## Applications
 
-### ChatGPT
-Assistant principal pour écrire, corriger, traduire, générer des idées, débloquer du code, préparer des mails, structurer des pages et fabriquer des prompts visuels.
+## Usage mesuré sur les 60 derniers jours
 
-### Ollama
+Données extraites localement depuis macOS Screen Time / Knowledge DB.
+C'est partiel, mais ça donne une bonne photo de l'établi réel.
+
+| Outil | Temps | Lecture rapide |
+|---|---:|---|
+| [Visual Studio Code](https://code.visualstudio.com/) | 12.37 h | Éditeur principal. Le vrai poste de pilotage dev. |
+| [Ghostty](https://ghostty.org/) | 7.31 h | Terminal principal. Scripts, Git, tests, serveurs locaux. |
+| [Hermes](https://hermes-agent.nousresearch.com/) | 2.13 h | Agent local et expérimentation MCP / automatisation. |
+| [FileZilla](https://filezilla-project.org/) | 0.40 h | FTP/SFTP ponctuel, surtout quand il faut aller vite. |
+| [Affinity](https://www.affinity.studio/) | 0.24 h | Image, maquette, retouche, assets visuels. |
+| [OmniDiskSweeper](https://www.omnigroup.com/more) | 0.07 h | Nettoyage disque, chasse aux gros dossiers. |
+| [Blender](https://www.blender.org/) | 0.05 h | 3D, tests de rendu, objets, références visuelles. |
+| [Sequel Ace](https://sequel-ace.com/) | 0.02 h | Inspection MySQL/MariaDB ponctuelle. |
+
+## Applications (Mac OS)
+
+### [Ollama](https://ollama.com/)
 Pour tester des modèles locaux, surtout autour du code, des agents et des workflows sans dépendre uniquement des API externes.
 
-### Dropbox
+### [Dropbox](https://www.dropbox.com/)
 Stockage et synchronisation des projets, notes, exports, fichiers de site et dossiers de travail.
 
-### Opencode
+### [FileZilla](https://filezilla-project.org/)
+FTP/SFTP ponctuel: 0.40 h mesurées. Pas l'outil sexy, mais parfois le chemin le plus court pour déplacer un fichier.
+
+### [OmniDiskSweeper](https://www.omnigroup.com/more)
+Nettoyage disque: 0.07 h mesurées. Utile quand le Mac commence à devenir une cave pleine de cartons.
+
+### [Sequel Ace](https://sequel-ace.com/)
+Client MySQL/MariaDB: 0.02 h mesurées. Inspection rapide de bases, tables, contenu et debug ponctuel.
+
+### [Opencode](https://opencode.ai/)
 Pour tester des modèles et génération de code et des workflows automatisés.
+
+
+### [Visual Studio Code](https://code.visualstudio.com/)
+Éditeur principal ces 60 derniers jours: 12.37 h mesurées. Code, Markdown, workers, sites, scripts, backoffices.
+
+### [Ghostty](https://ghostty.org/)
+Terminal principal ces 60 derniers jours: 7.31 h mesurées. Git, commandes locales, agents, scripts, tests, logs.
 
 ## CLI et outils dev
 
-### git
+### [git](https://git-scm.com/)
 Versionner proprement. Revenir en arrière. Tester sans tout casser.
 
-### GitHub CLI
+### [GitHub CLI](https://cli.github.com/)
 Lire les issues, créer des tickets, inspecter les PR, suivre les checks et pousser des changements plus vite qu'en passant par l'interface.
 
-### npm / Node.js
+### [npm / Node.js](https://nodejs.org/)
 Scripts front, tooling, paquets, workers, petits serveurs locaux, automatisations.
 
-### Cloudflare Workers
+### [Cloudflare Workers](https://developers.cloudflare.com/workers/)
 Réécriture d'URLs, cache, règles edge, headers, canonical, routage et petits traitements devant les sites.
 
-### Tailscale
+### [Tailscale](https://tailscale.com/)
 Accès privé aux machines et services sans exposer n'importe quoi sur Internet.
 
 ## Stack web et infra
 
-### Cloudflare
+### [Cloudflare](https://www.cloudflare.com/)
 DNS, cache, règles de sécurité, redirections, protection de sous-domaines, optimisation des assets.
 
-### OVH
+### [OVH](https://www.ovhcloud.com/fr/)
 Hébergement mutualisé historique, gestion DNS/domaines et certaines briques web.
 
-### GitHub
+### [GitHub](https://github.com/)
 Code, issues, suivi des bugs, idées de features, historique des changements.
 
-### Google Analytics 4
+### [Google Analytics 4](https://analytics.google.com/analytics/web/)
 Mesure du trafic et suivi global des sites, quand les quotas et les exports ne cassent pas tout.
 
-### Search Console
+### [Search Console](https://search.google.com/search-console/about)
 Lecture SEO concrète: pages indexées, requêtes, erreurs, sitemap, pages anglaises, signaux Google.
 
 ## Studio Pixel
 
-### Google Ads
+### [Google Ads](https://ads.google.com/)
 Acquisition pour Studio Pixel, tests de campagnes et suivi des performances locales.
 
-### Jotform
+### [Jotform](https://www.jotform.com/)
 Formulaires clients, demandes de projets, consentement, collecte d'informations et pièces jointes.
 
-### Gmail
-Demandes clients, guests, relances, devis, suivi administratif, réponses rapides.
-
-### Google Calendar
-Planning studio, rendez-vous, guests, organisation des semaines et coordination interne.
-
-### Instagram
+### [Instagram](https://www.instagram.com/)
 Portfolio vivant, concours, flashs, stories, annonces, preuve sociale et contact direct.
 
-### Stripe
+### [Stripe](https://stripe.com/fr)
 Paiements en ligne, réflexion sur arrhes, liens de paiement et automatisation potentielle.
 
-### Alma
+### [Alma](https://www.almapay.com/fr-FR)
 Payment en 4 fois.
 
-### PostHog
+### [PostHog](https://posthog.com/)
 Analyse produit possible pour suivre des usages applicatifs, comprendre des parcours et inspecter des erreurs.
 
 
 ## Podcast et contenu
 
-### Acast
+### [Acast](https://www.acast.com/fr)
 Hébergement des épisodes, flux RSS, statistiques d'écoute.
 
-### Auphonic
+### [Auphonic](https://auphonic.com/)
 Post-production audio, normalisation, export, métadonnées, chapitres et formats.
 
-### Da Vinci Resolve
+### [Da Vinci Resolve](https://www.blackmagicdesign.com/products/davinciresolve)
 Montage vidéo, export,  sous-titres, mixage audio et production.
-
-
-Divers
