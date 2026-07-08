@@ -20,7 +20,7 @@ const locale = {
     aboutLabel: 'about',
     toolsLabel: 'tools',
     bio: 'Tattoo artist and maker in Grenoble, France.',
-    text: 'I make tattoos at Studio Pixel. I also build objects, tools and visual systems.',
+    text: "“I guess you guys aren't ready for that yet... But your kids are gonna love it.”",
   },
   fr: {
     lang: 'fr',
@@ -32,8 +32,8 @@ const locale = {
     postsLabel: 'articles',
     aboutLabel: 'à propos',
     toolsLabel: 'outils',
-    bio: 'Tatoueur et développeur web à Grenoble.',
-    text: 'tatoueur au Studio Pixel. Je construis aussi des objets, des outils et des systèmes visuels.',
+    bio: 'Tatoueur, dev et maker à Grenoble.',
+    text: "« Je suppose que vous n'êtes pas encore prêts pour ça… Mais vos enfants vont adorer. »",
   },
 }
 
@@ -136,15 +136,12 @@ const renderPostsIndex = async isFrench => {
 
   const l = locale[isFrench ? 'fr' : 'en']
   const title = isFrench ? 'Articles' : 'Posts'
-  const intro = isFrench
-    ? 'Notes courtes. Markdown brut. HTML généré.'
-    : 'Short notes. Raw Markdown. Generated HTML.'
 
   const items = posts.length
     ? posts.map(post => `- **[${post.title}](${post.url})**  \n  ${post.date ? `${formatDate(post.date)}. ` : ''}${post.excerpt}`).join('\n\n')
     : isFrench ? 'Aucun article pour le moment.' : 'No posts yet.'
 
-  return `# ${title}\n\n${intro}\n\n${items}\n`
+  return `# ${title}\n\n${items}\n`
 }
 
 // ─── Template ────────────────────────────────────────────
