@@ -8,8 +8,9 @@ test('extracts first markdown h1 as title', () => {
 
 test('maps markdown files to html output', () => {
   assert.equal(getOutputName('index.md'), 'index.html')
-  assert.equal(getOutputName('about.md'), 'about.html')
-  assert.equal(getOutputName('posts/premier-signal.md'), 'posts/premier-signal.html')
+  assert.equal(getOutputName('fr/index.md'), 'fr/index.html')
+  assert.equal(getOutputName('about.md'), 'about/index.html')
+  assert.equal(getOutputName('posts/premier-signal.md'), 'posts/premier-signal/index.html')
 })
 
 test('renders simple page shell', async () => {
@@ -22,15 +23,15 @@ test('renders simple page shell', async () => {
 
 
 test('keeps nested post output under public posts folder', () => {
-  assert.equal(getOutputPath('posts/premier-signal.md'), 'public/posts/premier-signal.html')
+  assert.equal(getOutputPath('posts/premier-signal.md'), 'public/posts/premier-signal/index.html')
 })
 
-test('does not render posts nav link', async () => {
+test('renders posts and tools nav links', async () => {
   const page = await renderPage('test', '<h1>test</h1>')
 
-  assert.match(page, /href="\/about\.html"/)
-  assert.doesNotMatch(page, /href="\/posts\//)
-  assert.doesNotMatch(page, /href="\/posts\.html"/)
+  assert.match(page, /href="\/about\/"/)
+  assert.match(page, /href="\/posts\/"/)
+  assert.match(page, /href="\/tools\/"/)
 })
 
 
@@ -62,7 +63,9 @@ test('french page renders translated navigation', async () => {
 
   assert.match(page, /<html lang="fr">/)
   assert.match(page, /href="\/fr\/">accueil/)
-  assert.match(page, /href="\/fr\/about\.html">à propos/)
+  assert.match(page, /href="\/fr\/about\/">à propos/)
+  assert.match(page, /href="\/fr\/posts\/">articles/)
+  assert.match(page, /href="\/fr\/tools\/">outils/)
   assert.match(page, /class="active">FR/)
   assert.match(page, /Grenoble, France/)
   assert.match(page, /class="ascii-name"/)
@@ -100,7 +103,7 @@ test('posts index source files are generated at build time', async () => {
 
 test('frontmatter parser extracts metadata and body', async () => {
   const fs = await import('node:fs/promises')
-  const markdown = await fs.readFile('src/fr/posts/26-07-07-pong.md', 'utf8')
+  const markdown = await fs.readFile('src/fr/posts/pong.md', 'utf8')
   const [data, body] = parseFrontmatter(markdown)
 
   assert.equal(data.title, 'Pong 2009')
