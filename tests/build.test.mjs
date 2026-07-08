@@ -101,13 +101,23 @@ test('posts index source files are generated at build time', async () => {
   await assert.rejects(fs.access('src/fr/posts.md'))
 })
 
-test('frontmatter parser extracts metadata and body', async () => {
-  const fs = await import('node:fs/promises')
-  const markdown = await fs.readFile('src/fr/posts/pong.md', 'utf8')
+test('frontmatter parser extracts metadata and body', () => {
+  const markdown = `---
+title: Pong 2009
+date: 2026-07-07
+excerpt: Le jeu de mon frère
+---
+
+La sortie récente du jeu
+
+C'était en 2009.
+`
+
   const [data, body] = parseFrontmatter(markdown)
 
   assert.equal(data.title, 'Pong 2009')
   assert.equal(data.date, '2026-07-07')
+  assert.equal(data.excerpt, 'Le jeu de mon frère')
   assert.doesNotMatch(body, /title: Pong 2009/)
   assert.match(body, /sortie/)
 })
