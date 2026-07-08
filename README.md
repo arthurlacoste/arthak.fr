@@ -1,11 +1,6 @@
 # arthak.fr
 
-Site statique minimal.
-
-- source Markdown : `src/`
-- sortie HTML : `public/`
-- thème : Matrix green
-- logo : ASCII `arthak`
+Mes expérimentations.
 
 ## Commandes
 
