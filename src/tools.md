@@ -2,12 +2,6 @@
 
 These are the apps I use day to day for my projects, websites, scripts, and experiments. It is a mix of dev tools, design tools, productivity tools, and analytics.
 
-## Measured usage over the last 60 days
-
-Data extracted locally from macOS Screen Time / Knowledge DB.
-It is partial, but it gives a decent picture of the real workbench.
-
-
 ## Applications (macOS)
 
 - **[Ollama](https://ollama.com/)**: For testing local models, mostly around code, agents, and workflows without depending only on external APIs.
