@@ -6,7 +6,7 @@ import { buildSite } from '../build.mjs'
 
 const port = Number(process.env.PORT || 4173)
 const publicDir = path.resolve('public')
-const watched = ['src', 'static', 'style.css', 'build.mjs']
+const watched = ['src', 'static', '_layouts', 'style.css', 'build.mjs']
 const clients = new Set()
 let building = false
 let pending = false
@@ -130,5 +130,5 @@ for (const item of watched) {
 
 server.listen(port, () => {
   console.log(`[local:cloud] http://localhost:${port}`)
-  console.log('[local:cloud] watching src, static, style.css, build.mjs')
+  console.log(`[local:cloud] watching ${watched.join(', ')}`)
 })

@@ -2,38 +2,44 @@ import { marked } from 'marked'
 import { cp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 
+// ─── Config ──────────────────────────────────────────────
+
 const sourceDir = 'src'
 const staticDir = 'static'
 const outputDir = 'public'
+
+const locale = {
+  en: {
+    lang: 'en',
+    home: '/',
+    posts: '/posts/',
+    about: '/about.html',
+    homeLabel: 'home',
+    postsLabel: 'posts',
+    aboutLabel: 'about',
+    bio: 'Tattoo artist and maker in Grenoble, France.',
+    text: 'I make tattoos at Studio Pixel. I also build objects, tools and visual systems.',
+  },
+  fr: {
+    lang: 'fr',
+    home: '/fr/',
+    posts: '/fr/posts/',
+    about: '/fr/about.html',
+    homeLabel: 'accueil',
+    postsLabel: 'articles',
+    aboutLabel: 'à propos',
+    bio: 'Tatoueur et développeur web à Grenoble.',
+    text: 'tatoueur au Studio Pixel. Je construis aussi des objets, des outils et des systèmes visuels.',
+  },
+}
+
+// ─── Helpers ─────────────────────────────────────────────
 
 const escapeHtml = value => value
   .replaceAll('&', '&amp;')
   .replaceAll('<', '&lt;')
   .replaceAll('>', '&gt;')
   .replaceAll('"', '&quot;')
-
-export const getTitle = markdown => markdown.match(/^#\s+(.+)$/m)?.[1] ?? 'arthak'
-
-export const getOutputName = file => file === 'index.md'
-  ? 'index.html'
-  : file.replace(/\.md$/, '.html')
-
-export const getOutputPath = file => path.join(outputDir, getOutputName(file))
-
-const getUrl = file => {
-  const name = getOutputName(file)
-  if (name === 'index.html') return '/'
-  if (name === 'fr/index.html') return '/fr/'
-  return '/' + name
-}
-
-const getAlternateUrl = file => {
-  if (file === 'index.md') return '/fr/'
-  if (file === 'fr/index.md') return '/'
-  if (file.startsWith('fr/')) return '/' + getOutputName(file.replace(/^fr\//, ''))
-  return '/fr/' + getOutputName(file)
-}
-
 
 export const parseFrontmatter = markdown => {
   if (!markdown.startsWith('---\n')) return [{}, markdown]
@@ -57,9 +63,41 @@ export const parseFrontmatter = markdown => {
 
 export const stripFrontmatter = markdown => parseFrontmatter(markdown)[1]
 
+export const getTitle = markdown => markdown.match(/^#\s+(.+)$/m)?.[1] ?? 'arthak'
+
 const formatDate = date => date || ''
 
+// ─── URL helpers ─────────────────────────────────────────
+
+export const getOutputName = file => {
+  if (file === 'index.md') return 'index.html'
+  if (file === 'posts.md') return 'posts/index.html'
+  if (file === 'fr/posts.md') return 'fr/posts/index.html'
+  return file.replace(/\.md$/, '.html')
+}
+
+export const getOutputPath = file => path.join(outputDir, getOutputName(file))
+
+const getUrl = file => {
+  const name = getOutputName(file)
+  if (name === 'index.html') return '/'
+  if (name === 'fr/index.html') return '/fr/'
+  if (name.endsWith('/index.html')) return '/' + name.slice(0, -10) + '/'
+  return '/' + name
+}
+
+const getAlternateUrl = file => {
+  if (file === 'index.md') return '/fr/'
+  if (file === 'fr/index.md') return '/'
+  if (file === 'posts.md') return '/fr/posts/'
+  if (file === 'fr/posts.md') return '/posts/'
+  if (file.startsWith('fr/')) return '/' + getOutputName(file.replace(/^fr\//, ''))
+  return '/fr/' + getOutputName(file)
+}
+
 const getPostUrl = file => '/' + getOutputName(file)
+
+// ─── Data ────────────────────────────────────────────────
 
 const getPostMeta = async file => {
   const markdown = await readFile(path.join(sourceDir, file), 'utf8')
@@ -90,6 +128,7 @@ const renderPostsIndex = async isFrench => {
   const posts = await Promise.all(files.map(getPostMeta))
   posts.sort((a, b) => (b.date || '').localeCompare(a.date || '') || a.title.localeCompare(b.title))
 
+  const l = locale[isFrench ? 'fr' : 'en']
   const title = isFrench ? 'Articles' : 'Posts'
   const intro = isFrench
     ? 'Notes courtes. Markdown brut. HTML généré.'
@@ -102,65 +141,39 @@ const renderPostsIndex = async isFrench => {
   return `# ${title}\n\n${intro}\n\n${items}\n`
 }
 
-export const renderPage = (title, html, file = 'index.md') => {
-  const isFrench = file.startsWith('fr/')
-  const lang = isFrench ? 'fr' : 'en'
-  const homeHref = isFrench ? '/fr/' : '/'
-  const postsHref = isFrench ? '/fr/posts.html' : '/posts.html'
-  const aboutHref = isFrench ? '/fr/about.html' : '/about.html'
-  const bio = isFrench
-    ? 'Tatoueur et développeur web à Grenoble.'
-    : 'Tattoo artist and maker in Grenoble, France.'
-  const text = isFrench
-    ? 'tatoueur au Studio Pixel. Je construis aussi des objets, des outils et des systèmes visuels.'
-    : 'I make tattoos at Studio Pixel. I also build objects, tools and visual systems.'
-  const homeLabel = isFrench ? 'accueil' : 'home'
-  const postsLabel = isFrench ? 'articles' : 'posts'
-  const aboutLabel = isFrench ? 'à propos' : 'about'
+// ─── Template ────────────────────────────────────────────
 
-  return `<!doctype html>
-<html lang="${lang}">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${escapeHtml(title)}</title>
-  <link rel="canonical" href="${getUrl(file)}">
-  <link rel="alternate" hreflang="${isFrench ? 'en' : 'fr'}" href="${getAlternateUrl(file)}">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amarante&family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-  <link rel="icon" href="/favicon.webp" type="image/webp">
-  <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-  <header class="topbar">
-    <div class="top-language-switch" aria-label="Language switch">
-      <a href="${isFrench ? getAlternateUrl(file) : getUrl(file)}" class="${isFrench ? '' : 'active'}">EN</a>
-      <a href="${isFrench ? getUrl(file) : getAlternateUrl(file)}" class="${isFrench ? 'active' : ''}">FR</a>
-    </div>
-    <nav class="top-nav" aria-label="Navigation principale">
-      <a href="${homeHref}">${homeLabel}</a>
-      <a href="${aboutHref}">${aboutLabel}</a>
-    </nav>
-  </header>
-  <main class="shell">
-    <aside class="bio">
-      <img class="avatar" src="/assets/img/me-arthak.webp" alt="Arthak">
-      <pre class="ascii-name" aria-label="Arthak">Arthak</pre>
-      <p class="location">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.1 7-12A7 7 0 0 0 5 9c0 5.9 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg>
-        <span>Grenoble, France</span>
-      </p>
-      <p class="intro">${bio}</p>
-      <p>${text}</p>
-    </aside>
-    <article class="content">
-      ${html}
-    </article>
-  </main>
-</body>
-</html>`
+let _layout = null
+
+export const renderPage = async (title, html, file = 'index.md') => {
+  if (!_layout) {
+    _layout = await readFile('_layouts/default.html', 'utf8')
+  }
+
+  const isFrench = file.startsWith('fr/')
+  const l = locale[isFrench ? 'fr' : 'en']
+  const alternateL = locale[isFrench ? 'en' : 'fr']
+
+  return _layout
+    .replace('{{lang}}', l.lang)
+    .replace('{{title}}', escapeHtml(title))
+    .replace('{{canonical}}', getUrl(file))
+    .replace('{{alternate_hreflang}}', alternateL.lang)
+    .replace('{{alternate_href}}', getAlternateUrl(file))
+    .replace('{{en_href}}', isFrench ? getAlternateUrl(file) : getUrl(file))
+    .replace('{{en_class}}', isFrench ? '' : 'active')
+    .replace('{{fr_href}}', isFrench ? getUrl(file) : getAlternateUrl(file))
+    .replace('{{fr_class}}', isFrench ? 'active' : '')
+    .replace('{{home_href}}', l.home)
+    .replace('{{about_href}}', l.about)
+    .replace('{{home_label}}', l.homeLabel)
+    .replace('{{about_label}}', l.aboutLabel)
+    .replace('{{bio}}', l.bio)
+    .replace('{{text}}', l.text)
+    .replace('{{content}}', html)
 }
+
+// ─── Build ───────────────────────────────────────────────
 
 export async function listMarkdownFiles(dir = sourceDir, prefix = '') {
   const entries = await readdir(dir, { withFileTypes: true })
@@ -197,7 +210,7 @@ export async function buildSite() {
     const [data, bodyMarkdown] = parseFrontmatter(markdown)
     const title = data.title || getTitle(bodyMarkdown)
     const body = marked(bodyMarkdown)
-    const page = renderPage(title, body, file)
+    const page = await renderPage(title, body, file)
     const outputPath = getOutputPath(file)
 
     await mkdir(path.dirname(outputPath), { recursive: true })
@@ -208,7 +221,7 @@ export async function buildSite() {
     const markdown = await renderPostsIndex(isFrench)
     const title = getTitle(markdown)
     const body = marked(markdown)
-    const page = renderPage(title, body, file)
+    const page = await renderPage(title, body, file)
     const outputPath = getOutputPath(file)
 
     await mkdir(path.dirname(outputPath), { recursive: true })

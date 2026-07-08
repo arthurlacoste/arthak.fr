@@ -12,8 +12,8 @@ test('maps markdown files to html output', () => {
   assert.equal(getOutputName('posts/premier-signal.md'), 'posts/premier-signal.html')
 })
 
-test('renders simple page shell', () => {
-  const page = renderPage('test', '<h1>test</h1>')
+test('renders simple page shell', async () => {
+  const page = await renderPage('test', '<h1>test</h1>')
 
   assert.match(page, /<aside class="bio">/)
   assert.match(page, /<article class="content">/)
@@ -25,15 +25,17 @@ test('keeps nested post output under public posts folder', () => {
   assert.equal(getOutputPath('posts/premier-signal.md'), 'public/posts/premier-signal.html')
 })
 
-test('does not render posts nav link yet', () => {
-  const page = renderPage('test', '<h1>test</h1>')
+test('does not render posts nav link', async () => {
+  const page = await renderPage('test', '<h1>test</h1>')
 
-  assert.doesNotMatch(page, /href="\/posts.html"/)
+  assert.match(page, /href="\/about\.html"/)
+  assert.doesNotMatch(page, /href="\/posts\//)
+  assert.doesNotMatch(page, /href="\/posts\.html"/)
 })
 
 
-test('renders favicon link', () => {
-  const page = renderPage('test', '<h1>test</h1>')
+test('renders favicon link', async () => {
+  const page = await renderPage('test', '<h1>test</h1>')
 
   assert.match(page, /href="\/favicon\.webp"/)
   assert.match(page, /type="image\/webp"/)
@@ -55,11 +57,12 @@ test('french home output path is nested index', () => {
   assert.equal(getOutputPath('fr/index.md'), 'public/fr/index.html')
 })
 
-test('french page renders translated navigation', () => {
-  const page = renderPage('Projets', '<h1>Projets</h1>', 'fr/index.md')
+test('french page renders translated navigation', async () => {
+  const page = await renderPage('Projets', '<h1>Projets</h1>', 'fr/index.md')
 
   assert.match(page, /<html lang="fr">/)
-  assert.doesNotMatch(page, /href="\/fr\/posts\.html">articles/)
+  assert.match(page, /href="\/fr\/">accueil/)
+  assert.match(page, /href="\/fr\/about\.html">à propos/)
   assert.match(page, /class="active">FR/)
   assert.match(page, /Grenoble, France/)
   assert.match(page, /class="ascii-name"/)
@@ -76,16 +79,16 @@ test('card links have no underline css', async () => {
 })
 
 
-test('card images are clickable and copied', async () => {
+test('home page uses simple list style', async () => {
   const fs = await import('node:fs/promises')
   const markdown = await fs.readFile('src/index.md', 'utf8')
   const css = await fs.readFile('style.css', 'utf8')
 
-  assert.match(markdown, /card-image-link/)
-  assert.match(markdown, /cellophane-et-vaseline\.webp/)
-  assert.match(markdown, /arthak-tattoo\.webp/)
-  assert.match(markdown, /studio-pixel\.webp/)
-  assert.match(css, /\.card-image/)
+  assert.doesNotMatch(markdown, /card-image-link/)
+  assert.doesNotMatch(css, /\.card-image/)
+  assert.match(markdown, /\[Cellophane & Vaseline\]/)
+  assert.match(markdown, /\[Tattooing\]/)
+  assert.match(markdown, /\[Studio Pixel\]/)
 })
 
 test('posts index source files are generated at build time', async () => {
