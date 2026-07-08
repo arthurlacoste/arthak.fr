@@ -13,10 +13,12 @@ const locale = {
     lang: 'en',
     home: '/',
     posts: '/posts/',
-    about: '/about.html',
+    about: '/about/',
+    tools: '/tools/',
     homeLabel: 'home',
     postsLabel: 'posts',
     aboutLabel: 'about',
+    toolsLabel: 'tools',
     bio: 'Tattoo artist and maker in Grenoble, France.',
     text: 'I make tattoos at Studio Pixel. I also build objects, tools and visual systems.',
   },
@@ -24,10 +26,12 @@ const locale = {
     lang: 'fr',
     home: '/fr/',
     posts: '/fr/posts/',
-    about: '/fr/about.html',
+    about: '/fr/about/',
+    tools: '/fr/tools/',
     homeLabel: 'accueil',
     postsLabel: 'articles',
     aboutLabel: 'à propos',
+    toolsLabel: 'outils',
     bio: 'Tatoueur et développeur web à Grenoble.',
     text: 'tatoueur au Studio Pixel. Je construis aussi des objets, des outils et des systèmes visuels.',
   },
@@ -71,9 +75,11 @@ const formatDate = date => date || ''
 
 export const getOutputName = file => {
   if (file === 'index.md') return 'index.html'
+  if (file === 'fr/index.md') return 'fr/index.html'
   if (file === 'posts.md') return 'posts/index.html'
   if (file === 'fr/posts.md') return 'fr/posts/index.html'
-  return file.replace(/\.md$/, '.html')
+  const withoutExt = file.replace(/\.md$/, '')
+  return `${withoutExt}/index.html`
 }
 
 export const getOutputPath = file => path.join(outputDir, getOutputName(file))
@@ -82,7 +88,7 @@ const getUrl = file => {
   const name = getOutputName(file)
   if (name === 'index.html') return '/'
   if (name === 'fr/index.html') return '/fr/'
-  if (name.endsWith('/index.html')) return '/' + name.slice(0, -10) + '/'
+  if (name.endsWith('/index.html')) return '/' + name.slice(0, -10)
   return '/' + name
 }
 
@@ -91,11 +97,11 @@ const getAlternateUrl = file => {
   if (file === 'fr/index.md') return '/'
   if (file === 'posts.md') return '/fr/posts/'
   if (file === 'fr/posts.md') return '/posts/'
-  if (file.startsWith('fr/')) return '/' + getOutputName(file.replace(/^fr\//, ''))
-  return '/fr/' + getOutputName(file)
+  if (file.startsWith('fr/')) return getUrl(file.replace(/^fr\//, ''))
+  return '/fr' + getUrl(file)
 }
 
-const getPostUrl = file => '/' + getOutputName(file)
+const getPostUrl = file => getUrl(file)
 
 // ─── Data ────────────────────────────────────────────────
 
@@ -165,9 +171,13 @@ export const renderPage = async (title, html, file = 'index.md') => {
     .replace('{{fr_href}}', isFrench ? getUrl(file) : getAlternateUrl(file))
     .replace('{{fr_class}}', isFrench ? 'active' : '')
     .replace('{{home_href}}', l.home)
+    .replace('{{posts_href}}', l.posts)
     .replace('{{about_href}}', l.about)
+    .replace('{{tools_href}}', l.tools)
     .replace('{{home_label}}', l.homeLabel)
+    .replace('{{posts_label}}', l.postsLabel)
     .replace('{{about_label}}', l.aboutLabel)
+    .replace('{{tools_label}}', l.toolsLabel)
     .replace('{{bio}}', l.bio)
     .replace('{{text}}', l.text)
     .replace('{{content}}', html)
@@ -209,7 +219,12 @@ export async function buildSite() {
     const markdown = await readFile(path.join(sourceDir, file), 'utf8')
     const [data, bodyMarkdown] = parseFrontmatter(markdown)
     const title = data.title || getTitle(bodyMarkdown)
-    const body = marked(bodyMarkdown)
+    let body = marked(bodyMarkdown)
+
+    if ((file.startsWith('posts/') || file.startsWith('fr/posts/')) && !body.startsWith('<h1>')) {
+      body = `<h1>${escapeHtml(title)}</h1>\n${body}`
+    }
+
     const page = await renderPage(title, body, file)
     const outputPath = getOutputPath(file)
 
