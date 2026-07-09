@@ -1,53 +1,37 @@
 # About
 
-My name is Arthur Lacoste. Most of the time, I sign Arthak.
+My name is Arthur. But you can call me Arthak.
 
-I tattoo, I code, I make objects, I record conversations, I build small tools, then I start another idea before the previous one is perfectly finished.
+I always have something burning inside me: the days are always too short for me.
 
-This site is a small map of all that. Readable, hopefully.
-
-## Make first, understand after
+## Do first, understand later
 
 I understand things by making them.
 
-A tattoo. A website. A 3D printed object. A podcast episode. An open source tool. A tiny app that solves one annoying problem and creates two new ones.
+Since I was a kid, it has been a loop, in monomaniac phases. Drawing, music, writing, tattoos, development, 3D, video editing... The hardest part is not doing or finishing, but having to choose.
 
-"Make things fast, break things, fix things" is pretty much my mantra. It is never perfect, but it is my way of understanding.
+"Make things fast, break things, fix things" — that's a bit my mantra: it's never perfect, but it's my way of understanding.
 
-## Tattooing and Studio Pixel
+## Tattoo
 
-I tattoo in Grenoble, at [Studio Pixel](https://lestudiopixel.com).
+I get tattooed in Grenoble, at [Studio Pixel](https://lestudiopixel.com).
 
-Studio Pixel is a private tattoo studio and a collective space. Artists pass through, with different styles, different habits, different ways of seeing images.
+Since 2018, so it's starting to happen.
 
-I like that tension. Enough structure to work properly. Enough freedom to keep the place alive.
-
-My tattoo work moves around bold lines, strong shapes, sketches, symbols, cartoon, abstraction and visual experiments.
+Even after 8 years of tattooing, I still have imposter syndrome.
 
 ## Cellophane & Vaseline
 
-With [Cellophane & Vaseline](https://www.instagram.com/cellophane.et.vaseline/), I talk about creativity in French.
+With [Cellophane & Vaseline](https://www.youtube.com/@cellophane.et.vaseline), I talk about creativity (and a bit of tattooing).
 
-Not the clean and inspiring version. More the real version: how people work, learn, doubt, find tricks, lose time, and start again anyway.
+The doubts, the tips, but above all, having a good time with people you appreciate, simply.
 
-I like the backstage part. The method behind the image. The weird routine behind the clean result.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/JBJX4olOMjs?si=OG_diwx5yL7kdxT0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-## Code, tools and open source
+## Code & open source
 
-I also build tools. Most of them are available on [GitHub](https://github.com/arthurlacoste).
+I also build software (mainly components and websites, most available on [GitHub](https://github.com/arthurlacoste)).
 
-Winegold, MCPRelay, Listme, a 3D model parser, old tests, half-finished ideas, small systems that help me understand the bigger ones.
+With tattooing, I never had worries about "selling" my work. But development is another story; outside of jobs in the trade, I have almost always made my code available freely.
 
-Open source speaks to me because it leaves the door open. You can look, reuse, improve, or just learn from the mess.
-
-That feels healthier than pretending everything arrived perfectly polished from the sky.
-
-## Objects, 3D and bricolage
-
-I also like making physical things.
-
-3D objects, tests, small builds, practical things, useless things, forms somewhere between tool, toy and excuse to learn a new process.
-
-The good thing with matter is that it does not care about your concept.
-
-Too big, too fragile, badly thought out, impossible to print. It tells you fast. Then you adjust.
+I don't know if it's because (or thanks to) this book [***Richard Stallman and the free software revolution***](https://archives.framabook.org/docs/stallman/framabook6_stallman_v1_gnu-fdl.pdf) (Sam Williams, Richard Stallman & Christophe Masutti), but there is something beautiful in making your code available.

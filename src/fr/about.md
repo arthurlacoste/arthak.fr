@@ -1,53 +1,37 @@
 # À propos
 
-Je m’appelle Arthur Lacoste. La plupart du temps, je signe Arthak.
+Je m’appelle Arthur. Mais vous pouvez m'appeler Arthak.
 
-Je tatoue, je code, je fabrique des objets, j’enregistre des conversations, je construis des petits outils, puis je lance une autre idée avant que la précédente soit parfaitement finie.
-
-Ce site est une petite carte de tout ça. Lisible, normalement.
+J'ai toujours un truc sur le feu : les journées sont toujours trop courtes pour moi.
 
 ## Faire d’abord, comprendre après
 
 Je comprends les choses en les fabriquant.
 
-Un tatouage. Un site. Un objet imprimé en 3D. Un épisode de podcast. Un outil open source. Une petite app qui règle un problème pénible et en crée deux nouveaux.
+Depuis que je suis gamin ça tourne en boucle, par phases monomaniques. Dessin, musique, écriture, tattoo, developpement, 3d, montage vidéo... Le plus dur n'est pas de faire ni de finir, mais de devoir choisir.
 
-"Make things fast, break things, fix things" — c’est un peu mon mantra : c'est jamais parfait, mais c'estma manière de comprendre.
+"Make things fast, break things, fix things" — c’est un peu mon mantra : c'est jamais parfait, mais c'esma manière de comprendre.
 
-## Tatouage et Studio Pixel
+## Tattoo
 
 Je tatoue à Grenoble, au [Studio Pixel](https://lestudiopixel.com).
 
-Studio Pixel, c’est un salon privé et un espace collectif. Des artistes passent, avec différents styles, différentes habitudes, différentes façons de voir les images.
+Depuis 2018, donc ça commence à faire.
 
-J’aime cette tension. Assez de cadre pour bien bosser. Assez de liberté pour que le lieu reste vivant.
-
-Mon travail en tatouage tourne autour des lignes franches, des formes fortes, des croquis, des symboles, du cartoon, de l’abstraction et des expériences visuelles.
+Même après 8 ans de tattoo, j'ai toujours le syndrome de l'imposteur. 
 
 ## Cellophane & Vaseline
 
-Avec [Cellophane & Vaseline](https://www.instagram.com/cellophane.et.vaseline/), je parle de créativité en français.
+Avec [Cellophane & Vaseline](https://www.youtube.com/@cellophane.et.vaseline), je parle de créativité (et ausi un peu de tatouage).
 
-Pas la version propre et inspirante. Plutôt la vraie version : comment les gens bossent, apprennent, doutent, trouvent des combines, perdent du temps, recommencent quand même.
+Les doutes, les tips, mais surtout passer un bon moment avec des personnes qu'on apprécie, tout simplement.
 
-J’aime ce côté making off. La méthode derrière l’image. La routine bizarre derrière le résultat propre.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/JBJX4olOMjs?si=OG_diwx5yL7kdxT0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-## Code, outils et open source
+## Code & open source
 
-Je construis aussi des outils (la plupart disponible sur [github](https://github.com/arthurlacoste)).
+Je construis aussi des logiciels (enfin surtout des composants, et sites internet, la plupart disponible sur [GitHub](https://github.com/arthurlacoste)).
 
-Winegold, MCPRelay, Listme, un parser de modèles 3D, de vieux tests, des idées à moitié finies, des petits systèmes qui m’aident à comprendre les gros.
+Avec le tattoo je n'ai jamis eu de soucis à "vendre" mon travail. Par contre le dev, c'est autre chose, en dehors des emplois dans le métier, j'ai presque toujours mis mon code à libre disposition.
 
-L’open source me parle parce que ça laisse la porte ouverte. Tu peux regarder, reprendre, améliorer, ou juste apprendre du bazar.
-
-C’est plus sain que de faire semblant que tout arrive parfaitement poli depuis le ciel.
-
-## Objets, 3D et bricolage
-
-J’aime aussi fabriquer des choses physiques.
-
-Objets 3D, tests, petits montages, trucs pratiques, trucs inutiles, formes entre outil, jouet et excuse pour apprendre un nouveau procédé.
-
-Ce qui est bien avec la matière, c’est qu’elle se fiche de ton concept.
-
-Trop gros, trop fragile, mal pensé, impossible à imprimer. Elle te le dit vite. Après, tu ajustes.
+Je ne sais pas si c'est à cause (ou grâce) à ce livre  [***Richard Stallman et la révolution du logiciel libre***](https://archives.framabook.org/docs/stallman/framabook6_stallman_v1_gnu-fdl.pdf) (Sam Williams, Richard Stallman & Christophe Masutti), mais il ya quelque chose de beau à mettre son code à disposition.
