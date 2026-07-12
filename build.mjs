@@ -65,6 +65,32 @@ export const stripFrontmatter = markdown => parseFrontmatter(markdown)[1]
 
 export const getTitle = markdown => markdown.match(/^#\s+(.+)$/m)?.[1] ?? 'arthak'
 
+export const renderMarkdown = markdown => {
+  const definitions = new Map()
+  const withoutDefinitions = markdown.replace(/^\[\^([^\]]+)\]:\s+(.+)$/gm, (_, id, text) => {
+    definitions.set(id, text.trim())
+    return ''
+  })
+
+  const used = []
+  const withReferences = withoutDefinitions.replace(/\[\^([^\]]+)\]/g, (reference, id) => {
+    if (!definitions.has(id)) return reference
+    if (!used.includes(id)) used.push(id)
+    const number = used.indexOf(id) + 1
+    return '<sup class="footnote-ref" id="fnref-' + id + '"><a href="#fn-' + id + '" aria-label="Footnote ' + number + '">' + number + '</a></sup>'
+  })
+
+  const body = marked(withReferences)
+  if (!used.length) return body
+
+  const notes = used.map((id, index) => {
+    const content = marked.parseInline(definitions.get(id))
+    return '<li id="fn-' + id + '"><span class="footnote-number">' + (index + 1) + '</span><div>' + content + ' <a class="footnote-backref" href="#fnref-' + id + '" aria-label="Back to reference">↩</a></div></li>'
+  }).join('\n')
+
+  return body + '<section class="footnotes" aria-label="Footnotes"><ol>\n' + notes + '\n</ol></section>\n'
+}
+
 const formatDate = date => {
   if (!date) return ''
   if (date instanceof Date) return date.toISOString().slice(0, 10)
@@ -373,7 +399,7 @@ export async function buildSite() {
     const [data, bodyMarkdown] = parseFrontmatter(markdown)
     const title = data.title || getTitle(bodyMarkdown)
     const layout = data.layout || 'default'
-    let body = marked(bodyMarkdown)
+    let body = renderMarkdown(bodyMarkdown)
 
     if ((file.startsWith('posts/') || file.startsWith('fr/posts/')) && !body.startsWith('<h1>')) {
       const postIsFrench = file.startsWith('fr/')

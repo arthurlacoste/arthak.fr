@@ -1,7 +1,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
-import { getOutputName, getOutputPath, getTitle, parseFrontmatter, renderPage, buildPostsPages, buildToc, addHeadingIds } from '../build.mjs'
+import { getOutputName, getOutputPath, getTitle, parseFrontmatter, renderPage, buildPostsPages, buildToc, addHeadingIds, renderMarkdown } from '../build.mjs'
 import { getDirectoryRedirect } from '../scripts/trailing-slash.mjs'
 
 test('extracts first markdown h1 as title', () => {
@@ -330,4 +330,21 @@ test('rivers page renders without tools in nav', async () => {
 
   assert.doesNotMatch(page, /href="\/fr\/tools\/"/)
   assert.doesNotMatch(page, /outils/)
+})
+
+
+test('renders magazine footnotes with backlinks', () => {
+  const html = renderMarkdown('A claim.[^1]\n\n[^1]: A note with a [link](https://example.com).')
+
+  assert.match(html, /class="footnote-ref"/)
+  assert.match(html, /href="#fn-1"/)
+  assert.match(html, /class="footnotes"/)
+  assert.match(html, /id="fn-1"/)
+  assert.match(html, /href="#fnref-1"/)
+  assert.match(html, /<a href="https:\/\/example.com">link<\/a>/)
+  assert.doesNotMatch(html, /\[\^1\]:/)
+})
+
+test('leaves unknown footnote references untouched', () => {
+  assert.match(renderMarkdown('Missing[^404]'), /\[\^404\]/)
 })
