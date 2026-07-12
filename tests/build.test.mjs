@@ -363,6 +363,21 @@ test('Vivre sans voiture is assembled as one complete French river', async () =>
   assert.doesNotMatch(body, /\]\(\/(?:lexique|[0-9]-)/)
 })
 
+test('Vivre sans voiture has a complete English river', async () => {
+  const markdown = await readFile('src/rivers/vivre-sans-voiture.md', 'utf8')
+  const [data, body] = parseFrontmatter(markdown)
+
+  assert.equal(data.layout, 'rivers')
+  assert.equal(data.title, 'Living without a car')
+  assert.match(body, /^## Foreword$/m)
+  assert.match(body, /^## Introduction$/m)
+  assert.match(body, /^## Why live without a car\?$/m)
+  assert.match(body, /^## Conclusion$/m)
+  assert.match(body, /^## Lexicon$/m)
+  assert.match(body, /^## Bibliography$/m)
+  assert.doesNotMatch(body, /\]\(#(?:modes-actifs|une-question-economique)\)/)
+})
+
 
 test('renders magazine footnotes with backlinks', () => {
   const html = renderMarkdown('A claim.[^1]\n\n[^1]: A note with a [link](https://example.com).')
