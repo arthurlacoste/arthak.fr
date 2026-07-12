@@ -1,5 +1,5 @@
 ---
-title: "Jusqu'où pousser un abonnement ChatGPT à 20 dollars avec une passerelle MCP locale"
+title: "J'ai contourné ChatGPT pour coder à l'infini pour 20 $/mois"
 date: 2026-07-08
 excerpt: J’ai construit une passerelle MCP locale pour relier ChatGPT dans le navigateur à mon ordinateur et continuer à travailler quand les outils de code dédiés atteignent leurs limites.
 slug: mcprelay

@@ -320,7 +320,25 @@ export const buildToc = html => {
     headings.push({ level, id, text })
   }
   if (!headings.length) return ''
-  const items = headings.map(h => {
+  let currentSection = '__root__'
+  const subsectionCounts = new Map()
+  for (const heading of headings) {
+    if (heading.level === 2) currentSection = heading.id
+    if (heading.level === 3) {
+      subsectionCounts.set(currentSection, (subsectionCounts.get(currentSection) || 0) + 1)
+    }
+  }
+
+  currentSection = '__root__'
+  const visibleHeadings = headings.filter(heading => {
+    if (heading.level === 2) {
+      currentSection = heading.id
+      return true
+    }
+    return (subsectionCounts.get(currentSection) || 0) <= 3
+  })
+
+  const items = visibleHeadings.map(h => {
     const indent = h.level === 3 ? ' class="toc-sub"' : ''
     return `<li${indent}><a href="#${h.id}">${h.text}</a></li>`
   })

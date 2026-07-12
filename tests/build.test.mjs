@@ -313,6 +313,17 @@ test('buildToc extracts h2 and h3 headings', () => {
   assert.match(toc, /class="toc-sub"/)
 })
 
+test('buildToc hides h3 entries when a section has more than three', () => {
+  const html = '<h2 id="dense">Dense</h2><h3 id="one">One</h3><h3 id="two">Two</h3><h3 id="three">Three</h3><h3 id="four">Four</h3><h2 id="short">Short</h2><h3 id="kept">Kept</h3>'
+  const toc = buildToc(html)
+
+  assert.match(toc, /href="#dense"/)
+  assert.doesNotMatch(toc, /href="#one"/)
+  assert.doesNotMatch(toc, /href="#four"/)
+  assert.match(toc, /href="#short"/)
+  assert.match(toc, /href="#kept"/)
+})
+
 test('adds unique ids used by rivers toc links', () => {
   const html = addHeadingIds('<h2>ACTE 1</h2><h3>Scène 1</h3><h3>Scène 1</h3>')
   const toc = buildToc(html)

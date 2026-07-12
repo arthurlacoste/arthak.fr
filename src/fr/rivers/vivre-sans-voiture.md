@@ -22,9 +22,11 @@ source: https://github.com/arthurlacoste/vivre-sans-voiture
 
 *Essai sur les alternatives à l’automobile*
 
+![Vivre sans voiture — Arthur Lacoste](/assets/img/vivre-sans-voiture.jpg)
+
 Par Arthur Lacoste.
 
-> Version réunie depuis le [dépôt original du livre](https://github.com/arthurlacoste/vivre-sans-voiture), révision `7c18609`.
+
 
 
 ## Avant-propos
