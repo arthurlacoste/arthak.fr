@@ -1,7 +1,7 @@
 ---
-title: 20$ for unlimited tokens ? I built a bypass for codex as an MCP gateway 
+title: How I Made My $20 ChatGPT Plan More Useful with a Local MCP Gateway
 date: 2026-07-08
-excerpt: I built this because I kept running into a very boring modern problem. I would be coding, using Codex or some other AI dev tool, and then the limit would arrive. 
+excerpt: I built a local MCP gateway to connect regular ChatGPT in the browser to my own computer and keep working when dedicated coding tools hit their limits.
 ---
 
 I built this because I kept running into a very boring modern problem.
@@ -92,7 +92,7 @@ I tried OpenCode with Big Pickle, which is apparently a real model name (I know 
 
 I also played with [0xzr/freellmpool](https://github.com/0xzr/freellmpool), which is actually a clever idea: gather free tiers from a bunch of providers and route through them. Very hacker. Very raccoon with API keys. I respect it.
 
-But after all that, I am still basically stuck with a $20 ChatGPT plan.
+But after all that, I still mostly rely on a $20 ChatGPT plan.
 
 And honestly, that is fine.
 
@@ -102,7 +102,7 @@ The problem is workflow.
 
 If the assistant cannot touch my machine, I am still the bridge. I am still the one copying logs, pasting files, describing browser state, running commands, approving things, moving tiny pieces of context around like a sad warehouse worker for tokens.
 
-So `MCPRelay` is my way of making the $20 plan more useful.
+So `MCPRelay` is my way of making that $20 plan more useful.
 
 Not infinite.
 

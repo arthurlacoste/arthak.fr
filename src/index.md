@@ -7,15 +7,16 @@
 ## Open source
 
 - 🍷 **[Winegold](https://winegold.irz.fr/)** — An open-source drag and drop tool built with web technology.
-- 🔗 **[MCPRelay](https://github.com/arthurlacoste/MCPRelay)** — A local MCP gateway with vision, filesystem, puppeteer tools and built-in OAuth authentication.
+- 🔗 **[MCPRelay](https://github.com/arthurlacoste/MCPRelay)** — A local MCP gateway with built-in OAuth.
 - 📦 **[Amazon 3D Model Parser](https://app.irz.fr/3damazon/)** — A parser for extracting Amazon 3D model data.
 - 📝 **[Listme](https://github.com/arthurlacoste/listme)** — A tool to make lists and share them with your friends.
+- 🎯 **[Useless Skills](https://github.com/arthurlacoste/useless-skills)** — A local dashboard that aggregates skill usage across AI agents.
 
 ## Old projects
 
-- **[IRZ](https://archives.irz.fr/)** — A personal blog and playground for my experiments, tools, and projects.
+- 🧪 **[IRZ](/posts)** — A personal blog and playground for my experiments, tools, and projects.
 
 - 💪 **[WorkoutLoop](https://arthurlacoste.github.io/workoutloop/)** — A small workout loop app for training without overthinking it.
-- 🚲 **[Vivre sans voiture](https://sansvoiture.fr/)** — A book about ways to live your daily movements without making the car the default option.
+- 🚲 **[Vivre sans voiture](https://sansvoiture.fr/)** — An essay on daily life without a car.
 - 🎭 **[Vakarm](http://vakarm2007.free.fr/)** — A theatre piece I made in 2007.
 

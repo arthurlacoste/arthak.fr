@@ -39,3 +39,7 @@ Je construis aussi des logiciels (enfin surtout des composants, et sites interne
 Avec le tattoo je n'ai jamis eu de soucis à "vendre" mon travail. Par contre le dev, c'est autre chose, en dehors des emplois dans le métier, j'ai presque toujours mis mon code à libre disposition.
 
 Je ne sais pas si c'est à cause (ou grâce) à ce livre  [***Richard Stallman et la révolution du logiciel libre***](https://archives.framabook.org/docs/stallman/framabook6_stallman_v1_gnu-fdl.pdf) (Sam Williams, Richard Stallman & Christophe Masutti), mais il ya quelque chose de beau à mettre son code à disposition.
+
+## Outils
+
+Les apps et outils que j'utilise au quotidien sont listés sur [cette page](/fr/tools/).

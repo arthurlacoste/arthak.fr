@@ -39,3 +39,7 @@ I also build software (mainly components and websites, most available on [GitHub
 With tattooing, I never had worries about "selling" my work. But development is another story; outside of jobs in the trade, I have almost always made my code available freely.
 
 I don't know if it's because (or thanks to) this book [***Richard Stallman and the free software revolution***](https://archives.framabook.org/docs/stallman/framabook6_stallman_v1_gnu-fdl.pdf) (Sam Williams, Richard Stallman & Christophe Masutti), but there is something beautiful in making your code available.
+
+## Tools
+
+The apps and tools I use day to day are listed on [this page](/tools/).

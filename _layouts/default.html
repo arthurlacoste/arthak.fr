@@ -1,44 +1,15 @@
-<!doctype html>
-<html lang="{{lang}}">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{title}}</title>
-  <link rel="canonical" href="{{canonical}}">
-  <link rel="alternate" hreflang="{{alternate_hreflang}}" href="{{alternate_href}}">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amarante&family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-  <link rel="icon" href="/favicon.webp" type="image/webp">
-  <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-  <header class="topbar">
-    <div class="top-language-switch" aria-label="Language switch">
-      <a href="{{en_href}}" class="{{en_class}}">EN</a>
-      <a href="{{fr_href}}" class="{{fr_class}}">FR</a>
-    </div>
-    <nav class="top-nav" aria-label="Navigation principale">
-      <a href="{{home_href}}">{{home_label}}</a>
-      <a href="{{posts_href}}">{{posts_label}}</a>
-      <a href="{{about_href}}">{{about_label}}</a>
-      <a href="{{tools_href}}">{{tools_label}}</a>
-    </nav>
-  </header>
-  <main class="shell">
-    <aside class="bio">
-      <img class="avatar" src="/assets/img/me-arthak.webp" alt="Arthak">
-      <pre class="ascii-name" aria-label="Arthak">Arthak</pre>
-      <p class="location">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.1 7-12A7 7 0 0 0 5 9c0 5.9 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg>
-        <span>Grenoble, France</span>
-      </p>
-      <p class="intro">{{bio}}</p>
-      <p>{{text}}</p>
-    </aside>
-    <article class="content">
-      {{content}}
-    </article>
-  </main>
-</body>
-</html>
+<main class="shell">
+  <aside class="bio">
+    <img class="avatar" src="/assets/img/me-arthak.webp" alt="Arthak">
+    <pre class="ascii-name" aria-label="Arthak">Arthak</pre>
+    <p class="location">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.1 7-12A7 7 0 0 0 5 9c0 5.9 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg>
+      <span>Grenoble, France</span>
+    </p>
+    <p class="intro">{{bio}}</p>
+    <p>{{text}}</p>
+  </aside>
+  <article class="content">
+    {{content}}
+  </article>
+</main>

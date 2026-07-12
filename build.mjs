@@ -1,4 +1,6 @@
 import { marked } from 'marked'
+import { parseDocument } from 'yaml'
+import { createHash } from 'node:crypto'
 import { cp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 
@@ -8,17 +10,20 @@ const sourceDir = 'src'
 const staticDir = 'static'
 const outputDir = 'public'
 
+const getCssVersion = async () => {
+  const css = await readFile('style.css')
+  return createHash('sha256').update(css).digest('hex').slice(0, 12)
+}
+
 const locale = {
   en: {
     lang: 'en',
     home: '/',
     posts: '/posts/',
     about: '/about/',
-    tools: '/tools/',
     homeLabel: 'home',
     postsLabel: 'posts',
     aboutLabel: 'about',
-    toolsLabel: 'tools',
     bio: 'Tattoo artist and maker in Grenoble, France.',
     text: "“I guess you guys aren't ready for that yet... But your kids are gonna love it.”",
   },
@@ -27,11 +32,9 @@ const locale = {
     home: '/fr/',
     posts: '/fr/posts/',
     about: '/fr/about/',
-    tools: '/fr/tools/',
     homeLabel: 'accueil',
     postsLabel: 'articles',
     aboutLabel: 'à propos',
-    toolsLabel: 'outils',
     bio: 'Tatoueur, dev et maker à Grenoble.',
     text: "« Je suppose que vous n'êtes pas encore prêts pour ça… Mais vos enfants vont adorer. »",
   },
@@ -46,30 +49,27 @@ const escapeHtml = value => value
   .replaceAll('"', '&quot;')
 
 export const parseFrontmatter = markdown => {
-  if (!markdown.startsWith('---\n')) return [{}, markdown]
+  const match = markdown.match(/^---\s*\r?\n([\s\S]*?)\r?\n---\s*\r?\n?/)
+  if (!match) return [{}, markdown]
 
-  const end = markdown.indexOf('\n---\n', 4)
-  if (end === -1) return [{}, markdown]
-
-  const frontmatter = markdown.slice(4, end).trim().split('\n')
-  const data = {}
-
-  for (const line of frontmatter) {
-    const separator = line.indexOf(':')
-    if (separator === -1) continue
-    const key = line.slice(0, separator).trim()
-    const value = line.slice(separator + 1).trim()
-    data[key] = value
-  }
-
-  return [data, markdown.slice(end + 5).trimStart()]
+  const document = parseDocument(match[1], {
+    prettyErrors: false,
+    strict: false,
+    uniqueKeys: false,
+  })
+  const data = document.toJS() || {}
+  return [data, markdown.slice(match[0].length)]
 }
 
 export const stripFrontmatter = markdown => parseFrontmatter(markdown)[1]
 
 export const getTitle = markdown => markdown.match(/^#\s+(.+)$/m)?.[1] ?? 'arthak'
 
-const formatDate = date => date || ''
+const formatDate = date => {
+  if (!date) return ''
+  if (date instanceof Date) return date.toISOString().slice(0, 10)
+  return String(date).slice(0, 10)
+}
 
 // ─── URL helpers ─────────────────────────────────────────
 
@@ -119,13 +119,73 @@ const getPostMeta = async file => {
   return {
     file,
     title,
-    date: data.date || '',
+    date: formatDate(data.date),
+    updated: data.updated || '',
     excerpt: data.excerpt || firstParagraph || '',
     url: getPostUrl(file),
   }
 }
 
-const renderPostsIndex = async isFrench => {
+const POSTS_PER_PAGE = 80
+
+const stripHtml = value => value
+  .replace(/<[^>]+>/g, '')
+  .replace(/&amp;/gi, '&')
+  .replace(/&lt;/gi, '<')
+  .replace(/&gt;/gi, '>')
+  .replace(/&quot;/gi, '"')
+  .replace(/&#39;/gi, "'")
+  .replace(/&nbsp;/gi, ' ')
+  .replace(/\s+/g, ' ')
+  .trim()
+
+const truncate = (text, limit = 180) => {
+  if (text.length <= limit) return text
+  const cut = text.slice(0, limit + 1)
+  return `${cut.slice(0, cut.lastIndexOf(' ') > 80 ? cut.lastIndexOf(' ') : limit).trim()}…`
+}
+
+const formatDateFr = iso => {
+  if (!iso) return ''
+  const [y, m, d] = iso.split('-')
+  const months = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
+  return `${Number(d)} ${months[Number(m) - 1]} ${y}`
+}
+
+const formatMonthYearFr = iso => {
+  if (!iso) return ''
+  const [y, m] = iso.split('-')
+  const months = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
+  return `${months[Number(m) - 1]} ${y}`
+}
+
+const formatMonthYear = iso => {
+  if (!iso) return ''
+  const [y, m] = iso.split('-')
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  return `${months[Number(m) - 1]} ${y}`
+}
+
+const postLine = (post, isFrench) => {
+  const date = isFrench ? formatDateFr(post.date) : formatDate(post.date)
+  return `<div class="post-item"><span class="post-date">${date}</span><a href="${post.url}">${escapeHtml(post.title)}</a></div>`
+}
+
+const paginationNav = (page, totalPages, baseUrl) => {
+  if (totalPages <= 1) return ''
+  const links = []
+  if (page > 1) {
+    const prev = page === 2 ? baseUrl : `${baseUrl}page/${page - 1}/`
+    links.push(`[← Articles précédents](${prev})`)
+  }
+  links.push(`${page} / ${totalPages}`)
+  if (page < totalPages) {
+    links.push(`[Articles suivants →](${baseUrl}page/${page + 1}/)`)
+  }
+  return links.join(' &nbsp;·&nbsp; ')
+}
+
+export const buildPostsPages = async isFrench => {
   const prefix = isFrench ? 'fr/posts/' : 'posts/'
   const files = (await listMarkdownFiles())
     .filter(file => file.startsWith(prefix))
@@ -134,32 +194,129 @@ const renderPostsIndex = async isFrench => {
   const posts = await Promise.all(files.map(getPostMeta))
   posts.sort((a, b) => (b.date || '').localeCompare(a.date || '') || a.title.localeCompare(b.title))
 
-  const l = locale[isFrench ? 'fr' : 'en']
   const title = isFrench ? 'Articles' : 'Posts'
+  const baseUrl = isFrench ? '/fr/posts/' : '/posts/'
 
-  const items = posts.length
-    ? posts.map(post => `- **[${post.title}](${post.url})**  \n  ${post.date ? `${formatDate(post.date)}. ` : ''}${post.excerpt}`).join('\n\n')
-    : isFrench ? 'Aucun article pour le moment.' : 'No posts yet.'
+  if (!posts.length) {
+    return [{
+      page: 1,
+      totalPages: 1,
+      markdown: `# ${title}\n\n${isFrench ? 'Aucun article pour le moment.' : 'No posts yet.'}\n`,
+      outputPath: isFrench ? 'public/fr/posts/index.html' : 'public/posts/index.html',
+    }]
+  }
 
-  return `# ${title}\n\n${items}\n`
+  const pages = []
+  const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE)
+
+  for (let i = 0; i < totalPages; i++) {
+    const slice = posts.slice(i * POSTS_PER_PAGE, (i + 1) * POSTS_PER_PAGE)
+    const items = slice.map(post => postLine(post, isFrench)).join('\n')
+    const nav = paginationNav(i + 1, totalPages, baseUrl)
+    const heading = i === 0 ? `# ${title}\n\n` : ''
+    const markdown = `${heading}<div class="posts-list">\n${items}\n</div>\n\n${nav}\n`
+    const outputPath = i === 0
+      ? (isFrench ? 'public/fr/posts/index.html' : 'public/posts/index.html')
+      : (isFrench ? `public/fr/posts/page/${i + 1}/index.html` : `public/posts/page/${i + 1}/index.html`)
+
+    pages.push({ page: i + 1, totalPages, markdown, outputPath })
+  }
+
+  return pages
 }
 
 // ─── Template ────────────────────────────────────────────
 
-let _layout = null
+let _layouts = {}
+let _baseLayout
+let _topbar
 
-export const renderPage = async (title, html, file = 'index.md') => {
-  if (!_layout) {
-    _layout = await readFile('_layouts/default.html', 'utf8')
+const getBaseLayout = async () => {
+  if (!_baseLayout) _baseLayout = await readFile('_layouts/base.html', 'utf8')
+  return _baseLayout
+}
+
+const getTopbar = async () => {
+  if (!_topbar) _topbar = await readFile('_includes/topbar.html', 'utf8')
+  return _topbar
+}
+
+const getLayout = async name => {
+  if (name === 'post') name = 'default'
+
+  if (typeof name !== 'string' || !/^[a-z0-9][a-z0-9_-]*$/i.test(name)) {
+    throw new Error(`Invalid layout name: ${String(name)}`)
   }
+
+  if (!_layouts[name]) {
+    try {
+      _layouts[name] = await readFile(`_layouts/${name}.html`, 'utf8')
+    } catch (error) {
+      if (error.code === 'ENOENT') {
+        throw new Error(`Layout "${name}" not found: _layouts/${name}.html`)
+      }
+      throw error
+    }
+  }
+  return _layouts[name]
+}
+
+const headingSlug = value => value
+  .replace(/<[^>]+>/g, '')
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .toLowerCase()
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/^-|-$/g, '')
+
+export const addHeadingIds = html => {
+  const counts = new Map()
+
+  return html.replace(/<h([23])(\s[^>]*)?>(.*?)<\/h\1>/gi, (heading, level, attributes = '', content) => {
+    if (/\sid="[^"]+"/i.test(attributes)) return heading
+
+    const base = headingSlug(content) || 'section'
+    const count = (counts.get(base) || 0) + 1
+    counts.set(base, count)
+    const id = count === 1 ? base : `${base}-${count}`
+    return `<h${level}${attributes} id="${id}">${content}</h${level}>`
+  })
+}
+
+export const buildToc = html => {
+  const headings = []
+  const re = /<h([23])\s*(?:id="([^"]*)")?[^>]*>(.*?)<\/h\1>/gi
+  let m
+  while ((m = re.exec(html)) !== null) {
+    const level = Number(m[1])
+    const id = m[2] || headingSlug(m[3])
+    const text = m[3].replace(/<[^>]+>/g, '')
+    headings.push({ level, id, text })
+  }
+  if (!headings.length) return ''
+  const items = headings.map(h => {
+    const indent = h.level === 3 ? ' class="toc-sub"' : ''
+    return `<li${indent}><a href="#${h.id}">${h.text}</a></li>`
+  })
+  return `<ul>\n${items.join('\n')}\n</ul>`
+}
+
+export const renderPage = async (title, html, file = 'index.md', { layout = 'default', toc = '' } = {}) => {
+  const baseLayout = await getBaseLayout()
+  const pageLayout = await getLayout(layout)
+  const topbar = await getTopbar()
+  const cssVersion = await getCssVersion()
 
   const isFrench = file.startsWith('fr/')
   const l = locale[isFrench ? 'fr' : 'en']
   const alternateL = locale[isFrench ? 'en' : 'fr']
 
-  return _layout
+  return baseLayout
+    .replace('{{page}}', pageLayout)
+    .replace('{{topbar}}', topbar)
     .replace('{{lang}}', l.lang)
     .replace('{{title}}', escapeHtml(title))
+    .replace('{{css_version}}', cssVersion)
     .replace('{{canonical}}', getUrl(file))
     .replace('{{alternate_hreflang}}', alternateL.lang)
     .replace('{{alternate_href}}', getAlternateUrl(file))
@@ -170,13 +327,12 @@ export const renderPage = async (title, html, file = 'index.md') => {
     .replace('{{home_href}}', l.home)
     .replace('{{posts_href}}', l.posts)
     .replace('{{about_href}}', l.about)
-    .replace('{{tools_href}}', l.tools)
     .replace('{{home_label}}', l.homeLabel)
     .replace('{{posts_label}}', l.postsLabel)
     .replace('{{about_label}}', l.aboutLabel)
-    .replace('{{tools_label}}', l.toolsLabel)
     .replace('{{bio}}', l.bio)
     .replace('{{text}}', l.text)
+    .replace('{{toc}}', toc)
     .replace('{{content}}', html)
 }
 
@@ -216,28 +372,37 @@ export async function buildSite() {
     const markdown = await readFile(path.join(sourceDir, file), 'utf8')
     const [data, bodyMarkdown] = parseFrontmatter(markdown)
     const title = data.title || getTitle(bodyMarkdown)
+    const layout = data.layout || 'default'
     let body = marked(bodyMarkdown)
 
     if ((file.startsWith('posts/') || file.startsWith('fr/posts/')) && !body.startsWith('<h1>')) {
-      body = `<h1>${escapeHtml(title)}</h1>\n${body}`
+      const postIsFrench = file.startsWith('fr/')
+      const dateStr = formatDate(data.date)
+      const dateLabel = postIsFrench ? formatDateFr(dateStr) : dateStr
+      const updatedStr = data.updated
+        ? postIsFrench ? ` (mise à jour ${formatMonthYearFr(data.updated)})` : ` (updated ${formatMonthYear(data.updated)})`
+        : ''
+      body = `<h1>${escapeHtml(title)}</h1>\n<p class="post-date"><time datetime="${dateStr}">${escapeHtml(dateLabel)}</time>${updatedStr}</p>\n${body}`
     }
 
-    const page = await renderPage(title, body, file)
+    if (layout !== 'default') body = addHeadingIds(body)
+    const toc = layout === 'default' ? '' : buildToc(body)
+    const page = await renderPage(title, body, file, { layout, toc })
     const outputPath = getOutputPath(file)
 
     await mkdir(path.dirname(outputPath), { recursive: true })
     await writeFile(outputPath, page)
   }
 
-  for (const [file, isFrench] of [['posts.md', false], ['fr/posts.md', true]]) {
-    const markdown = await renderPostsIndex(isFrench)
-    const title = getTitle(markdown)
-    const body = marked(markdown)
-    const page = await renderPage(title, body, file)
-    const outputPath = getOutputPath(file)
-
-    await mkdir(path.dirname(outputPath), { recursive: true })
-    await writeFile(outputPath, page)
+  for (const isFrench of [false, true]) {
+    const pages = await buildPostsPages(isFrench)
+    for (const { markdown, outputPath } of pages) {
+      const title = getTitle(markdown)
+      const body = marked(markdown)
+      const page = await renderPage(title, body, isFrench ? 'fr/posts.md' : 'posts.md')
+      await mkdir(path.dirname(outputPath), { recursive: true })
+      await writeFile(outputPath, page)
+    }
   }
 
   await writeFile(path.join(outputDir, 'style.css'), await readFile('style.css', 'utf8'))

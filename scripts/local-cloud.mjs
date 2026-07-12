@@ -3,6 +3,7 @@ import { readFile, stat } from 'node:fs/promises'
 import { watch } from 'node:fs'
 import path from 'node:path'
 import { buildSite } from '../build.mjs'
+import { getDirectoryRedirect } from './trailing-slash.mjs'
 
 const port = Number(process.env.PORT || 4173)
 const publicDir = path.resolve('public')
@@ -89,6 +90,13 @@ const server = createServer(async (request, response) => {
     response.write('\n')
     clients.add(response)
     request.on('close', () => clients.delete(response))
+    return
+  }
+
+  const directoryRedirect = await getDirectoryRedirect(request.url || '/', publicDir)
+  if (directoryRedirect) {
+    response.writeHead(301, { Location: directoryRedirect })
+    response.end()
     return
   }
 
