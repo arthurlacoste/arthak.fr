@@ -1,6 +1,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
+import { readFile } from 'node:fs/promises'
 import { getOutputName, getOutputPath, getTitle, parseFrontmatter, renderPage, buildPostsPages, buildToc, addHeadingIds, renderMarkdown } from '../build.mjs'
 import { getDirectoryRedirect } from '../scripts/trailing-slash.mjs'
 
@@ -330,6 +331,25 @@ test('rivers page renders without tools in nav', async () => {
 
   assert.doesNotMatch(page, /href="\/fr\/tools\/"/)
   assert.doesNotMatch(page, /outils/)
+})
+
+test('Vivre sans voiture is assembled as one complete French river', async () => {
+  const markdown = await readFile('src/fr/rivers/vivre-sans-voiture.md', 'utf8')
+  const [data, body] = parseFrontmatter(markdown)
+
+  assert.equal(data.layout, 'rivers')
+  assert.equal(data.title, 'Vivre sans voiture')
+  assert.match(body, /^## Avant-propos$/m)
+  assert.match(body, /^## Introduction$/m)
+  assert.match(body, /^## Pourquoi vivre sans voiture \?$/m)
+  assert.match(body, /^## Êtes-vous citadin ou campagnard \?$/m)
+  assert.match(body, /^## Comment vivre sans voiture \?$/m)
+  assert.match(body, /^## Quel moyen de transport utiliser \?$/m)
+  assert.match(body, /^## Conclusion$/m)
+  assert.match(body, /^## Lexique$/m)
+  assert.match(body, /^## Remerciements$/m)
+  assert.match(body, /^## Bibliographie$/m)
+  assert.doesNotMatch(body, /\]\(\/(?:lexique|[0-9]-)/)
 })
 
 

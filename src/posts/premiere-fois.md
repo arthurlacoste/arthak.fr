@@ -21,7 +21,7 @@ I don't know if you are like me, but I love first times.
 
 What I love most are the thrills of the unknown. The moment when you don't yet know if something will be great, ridiculous, painful, or simply a failure. And the most practical thing is that first times are almost infinite. With a little imagination, one can continue to accumulate them for a long time.
 
-I remember the first play I wrote, long before *Vakarm*. There were tight deadlines, unnecessarily complicated lines, and probably more stage directions than dialogue.
+I remember the first play I wrote, long before [*Vakarm*](/rivers/vakarm/). There were tight deadlines, unnecessarily complicated lines, and probably more stage directions than dialogue.
 
 I remember my first tattoo, the pain mixed with the rather strange pleasure of becoming the canvas for a work of art. My first guitar, my difficult beginnings, and my painful fingers. The first website I built, then my discovery of HTML, CSS, and especially PHP.
 

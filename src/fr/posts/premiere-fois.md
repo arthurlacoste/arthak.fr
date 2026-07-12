@@ -21,7 +21,7 @@ Je ne sais pas si vous êtes comme moi, mais j’adore les premières fois.
 
 Ce que j’aime surtout, ce sont les frissons de l’inconnu. Le moment où l’on ne sait pas encore si quelque chose va être génial, ridicule, douloureux ou simplement raté. Et le plus pratique, c’est que les premières fois sont presque infinies. Avec un peu d’imagination, on peut continuer à en accumuler pendant longtemps.
 
-Je me souviens de la première pièce de théâtre que j’ai écrite, bien avant *Vakarm*. Il y avait des contraintes de délai, des répliques inutilement compliquées et probablement plus de didascalies que de texte.
+Je me souviens de la première pièce de théâtre que j’ai écrite, bien avant [*Vakarm*](/fr/rivers/vakarm/). Il y avait des contraintes de délai, des répliques inutilement compliquées et probablement plus de didascalies que de texte.
 
 Je me souviens de mon premier tatouage, de la douleur mêlée au plaisir assez étrange de devenir le support d’une œuvre. De ma première guitare, de mes débuts difficiles et de mes doigts douloureux. Du premier site web que j’ai construit, puis de ma découverte du HTML, du CSS et surtout du PHP.
 

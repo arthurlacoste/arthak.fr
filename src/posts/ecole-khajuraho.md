@@ -15,8 +15,6 @@ tags:
 archive: true
 ---
 
-*Text written in 2019, then rewritten in 2026.*
-
 I was travelling in India.
 
 In Khajuraho, people often approached me. Sometimes they wanted a photo with me. Sometimes they were determined to help me find my way, even when I was not looking for anything.

@@ -4,8 +4,8 @@ author: art
 date: 2006-04-16
 updated: 2026-07-12
 layout: post
-slug: wake-up-neo-matrix-linux
-title: En 2006, je voulais reproduire « Wake up, Neo » dans un terminal Linux
+slug: wake-up-neo-matrix
+title: Wake up, Neo
 archive: true
 categories:
 - Parcours

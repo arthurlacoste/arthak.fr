@@ -14,8 +14,6 @@ tags:
 archive: true
 ---
 
-*Text written in 2019, then rewritten in 2026.*
-
 I am 15.
 
 My mother limits me to one hour of computer time a week.
