@@ -2,36 +2,20 @@
 author: art
 comments: true
 date: 2016-04-30 07:30:03+00:00
+updated: 2026-07-12
 layout: post
 link: https://archives.irz.fr/premier-roadtrip-velo/
 slug: premier-roadtrip-velo
-title: Mon premier road trip en vélo
+title: Mon premier road trip à vélo
 wordpress_id: 1438459884
+archive: true
 categories:
 - Parcours
----
----
-author: art  
-date: 2016-04-30  
-updated: 2026-07-12  
-layout: post  
-slug: premier-roadtrip-velo  
-title: Mon premier road trip à vélo  
-archive: true  
-categories:
-
-- Parcours  
-  tags:
-  
+tags:
 - vélo
-  
 - voyage
-  
 - VAE
-  
 - improvisation
-  
-
 ---
 
 Je profite du train du retour pour faire le point sur ces quelques jours de vélo. J’avais prévu un trajet d’un peu plus de 150 kilomètres sur trois ou quatre jours, surtout pour me préparer à un départ plus long, peut-être à l’étranger.

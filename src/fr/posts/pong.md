@@ -1,5 +1,5 @@
 ---
-title: J'ai fais ce jeu il y a seize ans
+title: J'ai fait ce jeu il y a seize ans
 date: 2026-07-12
 excerpt: Le premier jeu de mon frère m’a fait repenser au Pong que j’avais codé en 2009, puis à tout ce qui a changé dans notre manière de développer avec l’IA.
 ---

@@ -15,8 +15,7 @@
 
 ## Anciens projets
 
-- 🧪 **[IRZ](/posts)** — Un blog personnel et un terrain de jeu pour mes expérimentations, outils et projets.
+- 🧪 **[IRZ](/fr/posts/)** — Un blog personnel et un terrain de jeu pour mes expérimentations, outils et projets.
 
 - 🚲 **[Vivre sans voiture](https://sansvoiture.fr/)** — Un essai sur les alternatives à la voiture au quotidien.
-- 🎭 **[Vakarm](http://vakarm2007.free.fr/)** — Une pièce de théâtre que j’ai créée en 2007.
-
+- 🎭 **[Vakarm](/fr/rivers/vakarm/)** — Une pièce de théâtre que j’ai créée en 2007.

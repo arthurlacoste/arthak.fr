@@ -92,6 +92,18 @@ test('home contains project categories and language toggle', async () => {
   assert.match(markdown, /MCPRelay/)
 })
 
+test('home archive links stay canonical and localized', async () => {
+  const fs = await import('node:fs/promises')
+  const english = await fs.readFile('src/index.md', 'utf8')
+  const french = await fs.readFile('src/fr/index.md', 'utf8')
+
+  assert.match(english, /\[IRZ\]\(\/posts\/\)/)
+  assert.match(english, /\[Vakarm\]\(\/rivers\/vakarm\/\)/)
+  assert.match(french, /\[IRZ\]\(\/fr\/posts\/\)/)
+  assert.match(french, /\[Vakarm\]\(\/fr\/rivers\/vakarm\/\)/)
+  assert.doesNotMatch(french, /\[IRZ\]\(\/posts\/?\)/)
+})
+
 
 test('french home output path is nested index', () => {
   assert.equal(getOutputPath('fr/index.md'), 'public/fr/index.html')
@@ -166,10 +178,23 @@ test('pong has matching French and English source pages', async () => {
   const french = await fs.readFile('src/fr/posts/pong.md', 'utf8')
   const english = await fs.readFile('src/posts/pong.md', 'utf8')
 
-  assert.match(french, /title: J'ai fais ce jeu/)
+  assert.match(french, /title: J'ai fait ce jeu/)
   assert.match(english, /title: I Made This Game Sixteen Years Ago/)
   assert.match(english, /https:\/\/arthurlacoste\.github\.io\/pong-2026\//)
   assert.doesNotMatch(english, /style=/)
+})
+
+test('French bike road trip has one valid front matter block', async () => {
+  const fs = await import('node:fs/promises')
+  const markdown = await fs.readFile('src/fr/posts/premier-roadtrip-velo.md', 'utf8')
+  const [data, body] = parseFrontmatter(markdown)
+
+  assert.equal(data.title, 'Mon premier road trip à vélo')
+  assert.equal(data.updated, '2026-07-12')
+  assert.deepEqual(data.categories, ['Parcours'])
+  assert.deepEqual(data.tags, ['vélo', 'voyage', 'VAE', 'improvisation'])
+  assert.doesNotMatch(body, /^---/)
+  assert.doesNotMatch(body, /^author:/m)
 })
 
 
