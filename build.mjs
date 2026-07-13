@@ -147,6 +147,7 @@ const getPostMeta = async file => {
     title,
     date: formatDate(data.date),
     updated: data.updated || '',
+    emoji: data.emoji,
     excerpt: data.excerpt || firstParagraph || '',
     url: getPostUrl(file),
   }
@@ -195,6 +196,25 @@ const formatMonthYear = iso => {
 const postLine = (post, isFrench) => {
   const date = isFrench ? formatDateFr(post.date) : formatDate(post.date)
   return `<div class="post-item"><span class="post-date">${date}</span><a href="${post.url}">${escapeHtml(post.title)}</a></div>`
+}
+
+export const renderLatestPosts = async (isFrench, limit = 5) => {
+  const prefix = isFrench ? 'fr/posts/' : 'posts/'
+  const files = (await listMarkdownFiles())
+    .filter(file => file.startsWith(prefix))
+
+  const posts = await Promise.all(files.map(getPostMeta))
+  posts.sort((a, b) => (b.date || '').localeCompare(a.date || '') || a.title.localeCompare(b.title))
+
+  const emojis = ['🧪', '🛠️', '💡', '🧭', '📝', '⚡', '🎨', '🔍', '🚀', '🧩']
+  const item = post => {
+    const emojiIndex = [...post.file].reduce((sum, character) => sum + character.codePointAt(0), 0) % emojis.length
+    const date = isFrench ? formatDateFr(post.date) : formatDate(post.date)
+    const emoji = post.emoji === false ? '' : `${post.emoji || emojis[emojiIndex]} `
+    return `<li>${emoji}<strong><a href="${post.url}">${escapeHtml(post.title)}</a></strong> — ${date}</li>`
+  }
+
+  return `<ul class="home-posts">\n${posts.slice(0, limit).map(item).join('\n')}\n</ul>`
 }
 
 const paginationNav = (page, totalPages, baseUrl) => {
@@ -368,10 +388,10 @@ export const renderPage = async (title, html, file = 'index.md', { layout = 'def
     .replace('{{en_class}}', isFrench ? '' : 'active')
     .replace('{{fr_href}}', isFrench ? getUrl(file) : getAlternateUrl(file))
     .replace('{{fr_class}}', isFrench ? 'active' : '')
-    .replace('{{home_href}}', l.home)
+    .replaceAll('{{home_href}}', l.home)
     .replace('{{posts_href}}', l.posts)
     .replace('{{about_href}}', l.about)
-    .replace('{{home_label}}', l.homeLabel)
+    .replaceAll('{{home_label}}', l.homeLabel)
     .replace('{{posts_label}}', l.postsLabel)
     .replace('{{about_label}}', l.aboutLabel)
     .replace('{{bio}}', l.bio)
@@ -414,7 +434,13 @@ export async function buildSite() {
     if (file === 'posts.md' || file === 'fr/posts.md') continue
 
     const markdown = await readFile(path.join(sourceDir, file), 'utf8')
-    const [data, bodyMarkdown] = parseFrontmatter(markdown)
+    const [data, sourceBodyMarkdown] = parseFrontmatter(markdown)
+    const latestPostsToken = file === 'index.md'
+      ? '{5 latest posts}'
+      : file === 'fr/index.md' ? '{5 articles récents}' : null
+    const bodyMarkdown = latestPostsToken
+      ? sourceBodyMarkdown.replace(latestPostsToken, await renderLatestPosts(file.startsWith('fr/')))
+      : sourceBodyMarkdown
     const title = data.title || getTitle(bodyMarkdown)
     const layout = data.layout || 'default'
     let body = renderMarkdown(bodyMarkdown)

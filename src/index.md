@@ -4,6 +4,10 @@
 - 🖤 **[Tattooing](https://www.instagram.com/arthak/)** — Tattoo work, sketches, flashes and visual experiments.
 - 🏠 **[Studio Pixel](https://lestudiopixel.com/)** — Tattoo studio curating artists from all over the world.
 
+## Posts
+
+{5 latest posts}
+
 ## Open source
 
 - 🍷 **[Winegold](https://winegold.irz.fr/)** — An open-source drag and drop tool built with web technology.
@@ -13,8 +17,6 @@
 - 🎯 **[Useless Skills](https://github.com/arthurlacoste/useless-skills)** — A local dashboard that aggregates skill usage across AI agents.
 
 ## Old projects
-
-- 🧪 **[IRZ](/posts/)** — A personal blog and playground for my experiments, tools, and projects.
 
 - 💪 **[WorkoutLoop](https://arthurlacoste.github.io/workoutloop/)** — A small workout loop app for training without overthinking it.
 - 🚲 **[Living without a car](/rivers/vivre-sans-voiture/)** — An essay on daily life without a car.

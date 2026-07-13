@@ -2,6 +2,7 @@
 title: Une heure d’ordinateur par semaine
 date: 2019-07-15
 updated: 2026-07-13
+emoji: 💻
 layout: post
 slug: une-heure-d-ordinateur-par-semaine
 categories:

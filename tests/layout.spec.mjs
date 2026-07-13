@@ -3,6 +3,37 @@ import { test, expect } from '@playwright/test'
 const RIVERS_URL = '/rivers/vakarm/'
 const POSTS_URL = '/fr/posts/'
 
+test.describe('localized floating bio logo', () => {
+  test.use({ viewport: { width: 1440, height: 900 } })
+
+  for (const [path, home] of [['/', '/'], ['/fr/', '/fr/']]) {
+    test(`${path} links logo to ${home}`, async ({ page }) => {
+      await page.goto(path)
+      const logo = page.locator('.avatar-link')
+
+      await expect(logo).toHaveAttribute('href', home)
+      await logo.hover()
+      await expect(logo).toHaveCSS('animation-name', 'avatar-float')
+      await logo.screenshot({
+        path: `/tmp/arthak/test-captures/bio-logo-${home === '/' ? 'en' : 'fr'}-hover.png`,
+        animations: 'disabled',
+      })
+    })
+  }
+})
+
+test.describe('English home latest posts', () => {
+  test.use({ viewport: { width: 1440, height: 900 } })
+
+  test('shows exactly five latest posts', async ({ page }) => {
+    await page.goto('/')
+
+    const posts = page.locator('h2', { hasText: 'Posts' }).locator('xpath=following-sibling::ul[contains(@class, "home-posts")][1]')
+    await expect(posts.locator('li')).toHaveCount(5)
+    await posts.screenshot({ path: '/tmp/arthak/test-captures/home-en-latest-posts.png' })
+  })
+})
+
 test.describe('posts page – desktop (1440px)', () => {
   test.use({ viewport: { width: 1440, height: 900 } })
 

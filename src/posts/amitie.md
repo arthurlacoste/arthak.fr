@@ -2,6 +2,7 @@
 title: The symbol of friendship
 date: 2020-06-27
 updated: 2026-07-13
+emoji: 🩳
 layout: post
 slug: the-symbol-of-friendship
 categories:

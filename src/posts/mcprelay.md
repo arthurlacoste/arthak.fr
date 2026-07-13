@@ -1,6 +1,7 @@
 ---
 title: "I bypassed ChatGPT to code forever for $20/month"
 date: 2026-07-08
+emoji: 🤖
 excerpt: I built a local MCP gateway to connect ChatGPT in the browser to my computer and keep working when dedicated coding tools hit their limits.
 slug: mcprelay
 categories:

@@ -2,6 +2,7 @@
 title: One hour of computer time a week
 date: 2019-07-15
 updated: 2026-07-13
+emoji: 💻
 layout: post
 slug: one-hour-of-computer-time-a-week
 categories:

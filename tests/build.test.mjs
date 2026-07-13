@@ -2,7 +2,7 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
 import { readFile } from 'node:fs/promises'
-import { getOutputName, getOutputPath, getTitle, parseFrontmatter, renderPage, buildPostsPages, buildToc, addHeadingIds, renderMarkdown } from '../build.mjs'
+import { getOutputName, getOutputPath, getTitle, parseFrontmatter, renderPage, buildPostsPages, buildToc, addHeadingIds, renderLatestPosts, renderMarkdown } from '../build.mjs'
 import { getDirectoryRedirect } from '../scripts/trailing-slash.mjs'
 
 test('extracts first markdown h1 as title', () => {
@@ -31,6 +31,18 @@ test('renders simple page shell', async () => {
   assert.match(page, /<aside class="bio">/)
   assert.match(page, /<article class="content">/)
   assert.doesNotMatch(page, /arthak ascii logo/)
+})
+
+test('bio logo links to localized home and floats on interaction', async () => {
+  const fs = await import('node:fs/promises')
+  const english = await renderPage('Home', '<h1>Home</h1>')
+  const french = await renderPage('Accueil', '<h1>Accueil</h1>', 'fr/index.md')
+  const css = await fs.readFile('style.css', 'utf8')
+
+  assert.match(english, /class="avatar-link" href="\/" aria-label="home"/)
+  assert.match(french, /class="avatar-link" href="\/fr\/" aria-label="accueil"/)
+  assert.match(css, /\.avatar-link:hover,\.avatar-link:focus-visible\{animation:avatar-float/)
+  assert.match(css, /@media\(prefers-reduced-motion:reduce\)/)
 })
 
 
@@ -93,18 +105,15 @@ test('home contains project categories and language toggle', async () => {
   assert.match(markdown, /MCPRelay/)
 })
 
-test('home archive links stay canonical and localized', async () => {
+test('home river links stay canonical and localized', async () => {
   const fs = await import('node:fs/promises')
   const english = await fs.readFile('src/index.md', 'utf8')
   const french = await fs.readFile('src/fr/index.md', 'utf8')
 
-  assert.match(english, /\[IRZ\]\(\/posts\/\)/)
   assert.match(english, /\[Vakarm\]\(\/rivers\/vakarm\/\)/)
   assert.match(english, /\[Living without a car\]\(\/rivers\/vivre-sans-voiture\/\)/)
-  assert.match(french, /\[IRZ\]\(\/fr\/posts\/\)/)
   assert.match(french, /\[Vakarm\]\(\/fr\/rivers\/vakarm\/\)/)
   assert.match(french, /\[Vivre sans voiture\]\(\/fr\/rivers\/vivre-sans-voiture\/\)/)
-  assert.doesNotMatch(french, /\[IRZ\]\(\/posts\/?\)/)
 })
 
 
@@ -146,6 +155,19 @@ test('home page uses simple list style', async () => {
   assert.match(markdown, /\[Cellophane & Vaseline\]/)
   assert.match(markdown, /\[Tattooing\]/)
   assert.match(markdown, /\[Studio Pixel\]/)
+})
+
+test('English home renders five latest English posts', async () => {
+  const latestPosts = await renderLatestPosts(false)
+  const items = latestPosts.match(/<li>/g) || []
+
+  assert.equal(items.length, 5)
+  assert.match(latestPosts, /<ul class="home-posts">/)
+  assert.match(latestPosts, /<li>🎮 <strong><a href="\/posts\/pong\//)
+  assert.match(latestPosts, /<li>🤖 <strong><a href="\/posts\/mcprelay\//)
+  assert.match(latestPosts, /<li>🥕 <strong><a href="\/posts\/douze-kilos-de-carottes\//)
+  assert.match(latestPosts, /<\/a><\/strong> — \d{4}-\d{2}-\d{2}<\/li>/)
+  assert.doesNotMatch(latestPosts, /href="\/fr\/posts\//)
 })
 
 test('posts index source files are generated at build time', async () => {

@@ -1,6 +1,7 @@
 ---
 title: I Made This Game Sixteen Years Ago
 date: 2026-07-12
+emoji: 🎮
 excerpt: My brother's first game made me rethink the Pong I coded in 2009, and everything that has changed in how we develop with AI.
 ---
 

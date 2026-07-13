@@ -3,6 +3,7 @@
 title: Le symbole de l’amitié
 date: 2020-06-27
 updated: 2026-07-13
+emoji: 🩳
 layout: post
 slug: le-symbole-de-l-amitie
 categories:
