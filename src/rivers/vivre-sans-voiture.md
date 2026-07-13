@@ -65,7 +65,7 @@ Arthur
 
 This essay is open source and collaborative. That is to say that you can have and reuse what makes up the material of the book, according to the terms of the license that I have chosen.
 
-It is more precisely placed under the CC-BY 4.0 license, you can see the details of this license on [this page](https://github.com/arthurlacoste/vivre-sans-voiture/blob/master/licence.md)[^0-1]. To summarize it is possible to share (copy, distribute and communicate the material by any means and in any format) and adapt (remix, transform and create from the material for any use, including commercial. The only constraint is that of attribution: you must credit the work, include a link to the license and indicate whether modifications have been made to the work. You must indicate this information by all reasonable means, without however suggesting that the licensor supports you or the way in which you have used the work.
+More precisely, it is published under the CC BY 4.0 license. You can read the license on [this page](https://github.com/arthurlacoste/vivre-sans-voiture/blob/master/src/licence.md)[^0-1]. In short, you may share the material in any medium or format and adapt it for any purpose, including commercially. Attribution is the only requirement: credit the book, link to the license and indicate whether you made changes, without suggesting that the author endorses you or your use.
 
 ### An evolving book
 
@@ -137,19 +137,23 @@ Yes, it’s happening today, not tomorrow. So, let’s get started right away!
 
 Over the years, the use of the car has become democratized to the point of becoming essential. Everything is designed and thought out car: the landscapes have been deeply marked, the cities have been redesigned to avoid congestion. Road infrastructure was put in place and favored until the 1980s.
 
-From an energy point of view, however, the car is the least efficient vehicle. 83% of traffic is done by car, and it represents 35% of CO2 emissions\. Reconsidering the place of automobiles in our daily lives is urgent. We need to go back, but can we?
+From an energy perspective, private cars are inefficient. In 2019, cars accounted for 83.3% of the distance travelled for local mobility in metropolitan France. In 2024, transport produced 34% of France’s greenhouse gas emissions, and passenger cars generated 53% of the transport sector’s emissions[^2-0]. Reconsidering the place of cars in our daily lives therefore remains urgent.
 
 What must be understood is that the automobile industry has no interest in seeing other means of transport become more popular. As Mikael Colville-Andersen so eloquently puts it, “The bicycle is a real and immediate threat to the dominance of car culture in our cities.” And beyond the automobile industry, there is a whole section of the modern economy which depends exclusively on the automobile sector.
 
-A car weighs on average 1247 kg: it’s a monster of metal. Its volume is also totally disproportionate when we know that it carries on average only 1.2 people and remains parked 90% of the time. In addition to being heavy, it is noisy and polluting. She goes at breakneck speed. And it kills: 1.3 million people die from car accidents worldwide each year[^2-1].
+The average car in the French fleet weighed 1.26 tonnes on 1 January 2023. For local trips, cars carried an average of 1.43 people in 2019 and remained unused about 95% of the time[^2-weight]. Besides being heavy, cars are noisy and polluting. They can also kill: road crashes cause about 1.19 million deaths worldwide each year[^2-1].
 
 Have you digested all the figures you just read? Isn’t your mind too foggy? I promise, I'll try not to melt your brain any further in the following chapters!
 
-[^2-1]: WHO road safety situation report 2015
+[^2-0]: SDES, “[Local and long-distance mobility in France](https://www.statistiques.developpement-durable.gouv.fr/sites/default/files/2023-04/databab_113_mobilite_des_francais_cgdd_avril2023.pdf)” (2019 data) and “[Greenhouse gas emissions from transport](https://www.statistiques.developpement-durable.gouv.fr/edition-numerique/chiffres-cles-transports/fr/18-emissions-de-gaz-a-effet)” (2024 data).
+
+[^2-weight]: SDES, “[38.9 million cars in circulation in France on 1 January 2023](https://www.statistiques.developpement-durable.gouv.fr/389-millions-de-voitures-en-circulation-en-france-au-1er-janvier-2023)” and “[Travelling by car: alone, together or carpooling?](https://www.statistiques.developpement-durable.gouv.fr/se-deplacer-en-voiture-seul-plusieurs-ou-en-covoiturage-0)”; ADEME, “[Ecomobility](https://presse.ademe.fr/files/plaquette_ecomobilit%C3%A9_vf.pdf)”.
+
+[^2-1]: WHO, “[Global status report on road safety 2023](https://www.who.int/publications/i/item/9789240086517/)”.
 
 ### The problem of a sedentary lifestyle
 
-A sedentary lifestyle is one of the greatest scourges of our modern society. As children, we spend months, even years, between a pram and a stroller. As adults, we spend our time sitting in our car or on public transport, we work sitting at our desk, and we end up sitting in the evening in front of a television set (or in front of our computer).
+Sedentary behaviour and physical inactivity are major public-health issues. In 2022, 31% of adults worldwide did not meet the WHO’s recommended level of physical activity[^2-2]. As children, we spend months, even years, between a pram and a stroller. As adults, we sit in cars or on public transport, then at our desks and, in the evening, in front of a television or computer.
 
 Human beings have never been more immobile than in recent decades. The evolution of our behavior results in direct consequences: overweight, obesity, increased cardiovascular diseases, diabetes, increased risks of colon cancer, high blood pressure, osteoporosis, lipid disorders, depression and anxiety[^2-2].
 
@@ -161,7 +165,7 @@ So, so that our body is not a spectator in our own life, I will recommend comple
 
 Getting around by walking, cycling or any other means of traction using the power of our sweat has the advantage of merging the time of travel and that of a possible gym membership. Yes, I'm trying to explain to you that it's possible to save time by abandoning your car!
 
-[^2-2]: WHO, “[Sedentary lifestyle, a major cause of disease and disability](http://www.who.int/mediacentre/news/releases/release23/en/)”
+[^2-2]: WHO, “[Physical activity](https://www.who.int/news-room/fact-sheets/detail/physical-activity)”, 26 June 2024.
 
 ### An economic question
 
@@ -189,7 +193,7 @@ No, going back is normal when something doesn't work. But with a lot of advertis
 
 #### Consumer credit
 
-“In 1926, more than 30% of American households had the expensive invention of the car. Two-thirds are purchased on credit”[^2-6]. Today, things haven't really changed. Nearly 75% of cars are purchased on credit in France. An edifying observation for me, especially since this practice has been in practice since the beginning.
+“In 1926, more than 30% of American households had the expensive invention of the car. Two-thirds were purchased on credit”[^2-6]. In France, financing a car through credit or leasing remains common, but its share varies by year, scope and vehicle type. The lesson remains the same: compare the total cost of financing, not only the monthly payment.
 
 “Sixty-two thousand four hundred repetitions make a truth. »[^2-3] The car is imprinted on the retina with bursts of advertising spots, tempting offers, and undeniable advantages. We are sold a teleportation machine, an easy way to get far, fast. A feeling of freedom. But where is the freedom when your vehicle requires you to work and repay monthly loan payments to afford this lifestyle?
 
@@ -221,7 +225,9 @@ Here are some examples:
 * Declining agricultural production.
 * A rise in ocean levels.
 
-In the food industry, cow fart is also responsible for global warming. Yes, I laughed too the first time someone told me about it. And then I realized that indeed, the methane contained in bovine flatulence contributes to global warming. For example, in France they represent nearly 5% of carbon dioxide emissions, or the equivalent of 15 million cars. Yes, farting is not only unpleasant for our nostrils, it is also bad for the planet.
+In agriculture, cattle also contribute to global warming. The issue mainly comes from methane produced during digestion, especially enteric fermentation, rather than flatulence alone. According to Citepa, agriculture represented nearly 20% of France’s gross emissions in 2023; methane made up 57.1% of agricultural emissions and came mainly from ruminant farming[^2-methane].
+
+[^2-methane]: Citepa, “[France’s national food, nutrition and climate strategy](https://www.citepa.org/la-strategie-nationale-pour-lalimentation-la-nutrition-et-le-climat-fixe-des-orientations-pour-accelerer-la-transition-ecologique-du-systeme-alimentaire/)”, Secten 2025 data for 2023.
 
 #### Environmental impact
 
@@ -229,15 +235,15 @@ The environmental impact of the automobile on Earth is multiple. It’s actually
 
 First of all, a car is noisy. Who has never seen these stone walls around the ring roads to keep noise to a minimum? A friend has an apartment with a view of the ring road (the Grenoble ring road), and I can tell you: fortunately it has good double glazing! And her superb terrace, on which she could drink her morning coffee, is never used. And I understand it. With so much noise and dust early in the morning, who would want that?
 
-We talk a lot about human deaths, and that's normal, we feel directly concerned when we think that this could also happen to us. But beyond human deaths, there are animal deaths. What we call the roadkill effect represents nearly 253,000 animals per year in the United States, 90% of which are deer[^2-4]. In France, among large wildlife, it is mainly deer, wild boar and hedgehogs that are affected. The reason for these collisions? The fragmentation of the natural habitat of animals by roads, which literally cut the living space of animals in two. Speaking of hedgehogs, this species is gradually disappearing: their population is declining by 5% per year[^2-5], and would be threatened with extinction in 2025.
+We talk a lot about human deaths, and rightly so. But roads also affect animals: collisions, noise and habitat fragmentation can interrupt their movement and life cycles[^2-4]. The European hedgehog did not become extinct in 2025, despite a widely repeated prediction. Since 2024, however, the IUCN has classified it as “Near Threatened” globally; its numbers have declined in more than half of the countries where it occurs[^2-5].
 
 To avoid this direct impact on biodiversity, pedestrian crossings for animals are sometimes set up as in Presles in Isère, or a crossing dedicated to toads has been installed by a local association. In other cities, entire roads are closed during periods of migration or hibernation, such as the Bois Clair tunnel which is closed part of the year to preserve protected species of bats.
 
 Speaking of the Bois Clair tunnel, it is part of a road soberly named the greenway: a loop of more than 100 kilometers in the heart of southern Burgundy. If you ever want to go cycling, I highly recommend this route which I had the pleasure of traveling.
 
-[^2-4]: Hart-Schmidt B., “[Roadside eats](http://index.truman.edu/pdf/2010-2011/february24/page9.pdf)”
+[^2-4]: French Biodiversity Agency, “[Choose active mobility](https://ofb.gouv.fr/actions-citoyennes/privilegier-les-mobilites-douces)”.
 
-[^2-5]: Nicolson, Adam (2006) “[Where have all our hedgehogs gone?](https://www.theguardian.com/environment/2006/jan/17/g2.ruralaffairs)” The Guardian Tuesday, January 17, 2006.
+[^2-5]: IUCN, “[The European hedgehog is Near Threatened](https://uicn.fr/plus-dune-espece-darbre-sur-trois-dans-le-monde-est-menacee-dextinction-liste-rouge-de-luicn/)”, 28 October 2024.
 
 ### Driving license
 
@@ -389,7 +395,9 @@ Either way, you'll think about your errands differently by cycling: take the ess
 
 If you have a convenience store near you, that’s ideal! In case you are missing an ingredient, you can even walk there.
 
-On another note, certain brands offer to deliver your groceries directly to your home, and certain sites can send you certain everyday consumer items on a scheduled basis. The Internet is full of quality products and it is possible to get everything you could find in stores, and even more! I could have advised you to have it delivered rather than going to do your shopping by car, that would actually just shift the problem. According to Ademe, “50% of diesel consumed in the city is for the transport of goods”. Suffice it to say that placing an order online means traveling hundreds of kilometers by truck for the products you are ordering.
+Some retailers offer home delivery, while some websites can send everyday items on a schedule. Delivery does not eliminate transport impacts: according to ADEME, urban logistics accounts for 25% of greenhouse gas emissions from urban transport and about one third of air-pollutant emissions[^4-logistics]. Grouping orders, using a collection point or choosing cycle logistics can reduce that impact.
+
+[^4-logistics]: ADEME, “[Freight transport: on the right track?](https://infos.ademe.fr/magazine-octobre-2024/transport-de-marchandises-le-fret-sur-la-bonne-voie/)”, October 2024.
 
 Instead, try to think local: minimize the journey between the product design location and your closet. The shorter the distance, the poorer the carbon index of the object in question will be. The ideal is to produce your own food, but not everyone has the time or space. Another solution: AMAP (Association for the Maintenance of Peasant Agriculture), which generally offer weekly or monthly baskets with seasonal fruits and vegetables, and sometimes even local meat!
 
@@ -539,7 +547,7 @@ A slightly cheaper alternative to the cargo bike (which is a bit expensive) is t
 
 I am a fan of electric bikes, also called VAE. I have already talked about it previously, and as far as I am concerned, it is a real alternative that presents itself when your regular journeys are a little too long to be done with a classic bike. It allows you to go faster, while maintaining a reasonable pace. It allows you to climb the most arduous hills without the slightest difficulty, without sweat. Just like bicycles, you are not required to take out insurance to ride them.
 
-During one of my VAE trips, a local made it clear to me that he was not convinced of the ecological relevance of this solution, because the vast majority of electricity is produced by nuclear power plants. And he’s not wrong! In fact, 75% of electricity is produced in nuclear power plants, and only 15% by renewable energies (wind, photovoltaic, hydraulic)[^5-8]. To tip the scales in favor of green energies, you should take out an electricity subscription from dedicated suppliers, who invest in non-nuclear energy sources, such as Planète Oui or Enercoop.
+During one of my e-bike trips, a local resident told me that he doubted the environmental value of the solution because much of France’s electricity comes from nuclear power. That point needs context. In 2024, nuclear power supplied 67.1% of French electricity production and renewables supplied 27.8%. Overall, 95% of production was low-carbon, with an average carbon intensity of 21.7 gCO₂e/kWh[^5-8]. An e-bike is not impact-free, particularly because of its battery, but using one in France relies on very low-carbon electricity.
 
 There are e-bike models offering speeds of up to 45 km/h, but these fall outside the scope of VAE regulations, they are in the same category as scooters.
 
@@ -549,7 +557,7 @@ Although the cover of this book is illustrated by a Tesla and the first quote in
 
 [^5-7]: The Illustrated Velocipede, 1869
 
-[^5-8]: EDF, (2013). “[Electricity in France: the different sources of energy](https://web.archive.org/web/20140703015148/https://www.lenergieenquestions.fr/wp-content/uploads/2013/05/source-production-%C3%A9lectricit%C3%A91.pdf)”
+[^5-8]: RTE, “[2024 Electricity Report](https://analysesetdonnees.rte-france.com/bilan-electrique-2024/synthese)”.
 
 ## Conclusion
 
@@ -619,22 +627,32 @@ The first preview version was first revised by Lucie and Valérie Lacoste.
 - Robert M., (2005). “[To put an end to the automobile society](http://www.worldcarfree.net/resources/freesources/pour_en_finir.pdf)”
 - Ipcc, (2013). “Climate Change 2013: The Physical Science Basis”
 - Fressoz J.-B., Bonneuil C., (2013). “The Anthropocene event, the Earth, history and us”
-- WHO, (2015). “[WHO Road Safety Situation Report 2015](http://www.who.int/violence_injury_prevention/road_safety_status/2015/en/)”
+- WHO, (2023). “[Global status report on road safety 2023](https://www.who.int/publications/i/item/9789240086517/)”
+- RTE, (2025). “[2024 Electricity Report](https://analysesetdonnees.rte-france.com/bilan-electrique-2024/synthese)”
+- SDES, (2026). “[Greenhouse gas emissions from transport](https://www.statistiques.developpement-durable.gouv.fr/edition-numerique/chiffres-cles-transports/fr/18-emissions-de-gaz-a-effet)”
 - Lesclide R., (1869). “Velocipede Manual”
 - Huxley A., (1931). “Brave New World”
 
 #### Items
-- Chauveau L., (2013). “[French cows emit as much gas in one year as 15 million cars!](http://www.sciencesetavenir.fr/nature-environnement/20130222.OBS9788/les-vaches-francaises-emettent-quant-de-gaz-en-un-an-que-15-millions-de-voitures.html)”, Sciences et Avenir [online], (page consulted on 05/12/2016)
+- Citepa, (2026). “[France’s national food, nutrition and climate strategy](https://www.citepa.org/la-strategie-nationale-pour-lalimentation-la-nutrition-et-le-climat-fixe-des-orientations-pour-accelerer-la-transition-ecologique-du-systeme-alimentaire/)”
 - Cloutier J-S., (2015). “Copenhagen: cycling paradise”, [Radio-Canada Info](https://www.google.com/url?q=https://www.youtube.com/channel/UClxaaAzHu1B5EoTtBYea7ig&sa=D&ust=1509634949906000&usg=AFQjCNE6nYhS6H6vnBv6XAyc2Ybsjuz5kQ) [online]
-- France Nature Environnement, 2009\. “[Delivery of goods in the city](http://intranet.ariege-expansion.com/123/actu_1232267.pdf)” [online], (page consulted on 05/12/2016), p. 3
+- ADEME, (2024). “[Freight transport: on the right track?](https://infos.ademe.fr/magazine-octobre-2024/transport-de-marchandises-le-fret-sur-la-bonne-voie/)”
 - Lafon C., (2014). “[Transport: why Denmark is the king of cycling](http://maplanete.blogs.sudouest.fr/archive/2014/11/29/le-danemark-roi-du-velo-1029725.html)” Sud Ouest [online], (page consulted on 05/12/2016)
-- Le Monde.fr, (2015). “[European cities which have or will ban cars from city centers](http://www.lemonde.fr/pollution/article/2015/10/22/tour-d-europe-des-futurs-et-acteurs-centres-villes-sans-voiture_4795189_1652666.html#UFgiyvwVKhmMxA4i.99)” Le Monde [en line], (page consulted on 05/11/2016)
-- Le Point.fr, (2013). “[Driving license: the great deception](http://www.lepoint.fr/automobile/securite/a-quand-un-permis-de-conduit-pour-tous-27-06-2013-1686458_657.php)” Le Point [online], (page consulted on 05/11/2016)
+- Le Monde.fr, (2015). “[European cities which have or will ban cars from city centers](http://www.lemonde.fr/pollution/article/2015/10/22/tour-d-europe-des-futurs-et-actuels-centres-villes-sans-voiture_4795189_1652666.html#UFgiyvwVKhmMxA4i.99)” *Le Monde* [online], (page consulted on 05/11/2016)
+- Le Point.fr, (2013). “[Driving license: the great deception](http://www.lepoint.fr/automobile/securite/a-quand-un-permis-de-conduire-pour-tous-27-06-2013-1686458_657.php)” *Le Point* [online], (page consulted on 05/11/2016)
 - Haentjens J., Lemoine S., “Eco-urbanism: planetary challenges, urban solutions”
-- Hart-Schmidt B., “[Roadside eats](http://index.truman.edu/pdf/2010-2011/february24/page9.pdf)”,
-- Latribune.fr. “[The French still widely use credit to buy their car](http://www.latribune.fr/vos-finances/banques-credit/credit-auto-moto/20101007trib000556639/les-francais-recourent-toujours-largement-au-credit-pour-achat-leur-voiture.html)”
+- Latribune.fr. “[The French still widely use credit to buy their car](https://www.latribune.fr/vos-finances/banques-credit/credit-auto-moto/20101007trib000556639/les-francais-recourent-toujours-largement-au-credit-pour-acheter-leur-voiture.html)”
 - Europe 1, (09/25/2015). “[But how can we live without a car?](http://www.europe1.fr/emissions/allo-jean-michel/mais-comment-peut-on-vivre-sans-voiture-allo-jean-michel-25092015-2520309)”
 - Ruscio L., (08/19/2014). “[The new Régiolis trains reverse intermodal travel](http://www.rue89strasbourg.com/trains-regiolis-velos-ter-alsace-70916)”
-- WHO, (04/04/2002). “[Sedentary lifestyle, a major cause of illness and disability](http://www.who.int/mediacentre/news/releases/release23/en/)”
+- WHO, (2024). “[Physical activity](https://www.who.int/news-room/fact-sheets/detail/physical-activity)”
 - Nicolson A., (01/17/2006). “[Where have all our hedgehogs gone?](https://www.theguardian.com/environment/2006/jan/17/g2.ruralaffairs)”
-- EDF, (2013). “[Electricity in France: the different sources of energy](https://web.archive.org/web/20140703015148/https://www.lenergieenquestions.fr/wp-content/uploads/2013/05/source-production-%C3%A9lectricit%C3%A91.pdf)”
+- IUCN, (2024). “[The European hedgehog is Near Threatened](https://uicn.fr/plus-dune-espece-darbre-sur-trois-dans-le-monde-est-menacee-dextinction-liste-rouge-de-luicn/)”
+
+#### Preserved historical sources
+- WHO, (2015). “[WHO road safety situation report 2015](https://web.archive.org/web/20160409182753/http://www.who.int/violence_injury_prevention/road_safety_status/2015/en)” [archive]
+- Chauveau L., (2013). “[French cows emit as much gas in one year as 15 million cars!](http://www.sciencesetavenir.fr/nature-environnement/20130222.OBS9788/les-vaches-francaises-emettent-autant-de-gaz-en-un-an-que-15-millions-de-voitures.html)”, *Sciences et Avenir*, accessed 12 May 2016
+- France Nature Environnement, (2009). “[Delivery of goods in the city](https://web.archive.org/web/*/http://intranet.ariege-expansion.com/123/actu_1232267.pdf)” [Wayback search, original document unavailable]
+- Hart-Schmidt B., “[Roadside eats](https://web.archive.org/web/20130310001543/http://index.truman.edu/pdf/2010-2011/february24/page9.pdf)” [archive]
+- WHO, (2002). “[Physical inactivity, a leading cause of disease and disability](https://web.archive.org/web/20160318202726/http://www.who.int/mediacentre/news/releases/release23/en/)” [archive]
+- Nicolson A., (2006). “[Where have all our hedgehogs gone?](https://www.theguardian.com/environment/2006/jan/17/g2.ruralaffairs)”, *The Guardian*
+- EDF, (2013). “[Electricity in France: the different sources of energy](https://web.archive.org/web/20140703015148/https://www.lenergieenquestions.fr/wp-content/uploads/2013/05/source-production-%C3%A9lectricit%C3%A91.pdf)” [archive]
