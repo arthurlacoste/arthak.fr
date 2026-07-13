@@ -5,6 +5,12 @@ Réponse par défaut : mode `caveman`. Phrases courtes, directes, techniques, sa
 Pour écrire un logbook : src/fr/logbook.md , écrire au début du fichier, ne pas modifier les entrées existantes. Structure : "## <a id="yy-yy-dd-slug"></a>JJ mois YYYY,titre
 Texte 200 mots max à peu près"
 
+## Articles et traductions
+
+- Chaque article dans `src/fr/posts/` et `src/posts/` doit avoir un champ `emoji:` dans le frontmatter.
+- Une paire française et anglaise doit utiliser le même emoji.
+- Lors de l’ajout ou de la traduction d’un article, vérifier le frontmatter des deux versions avant validation.
+
 ## Développement
 
 - Fichiers courts ou moyens. Une responsabilité claire.
