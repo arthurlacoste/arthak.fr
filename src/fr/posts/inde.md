@@ -1,10 +1,10 @@
 ---
 author: art
 date: 2017-02-09
-updated: 2026-07-12
+updated: 2026-07-13
 layout: post
 slug: inde
-title: Ce que l’Inde a cassé dans mes idées toutes faites
+title: J'ai changé mes idées reçues sur l'Inde
 emoji: 🇮🇳
 archive: true
 categories:
