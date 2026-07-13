@@ -20,6 +20,19 @@ test.describe('localized floating bio logo', () => {
       })
     })
   }
+
+  test('crosses the screen for 800ms before opening localized home', async ({ page }) => {
+    await page.goto('/posts/')
+    const logo = page.locator('.avatar-link')
+
+    await logo.click()
+    await expect(logo).toHaveClass(/avatar-link--departing/)
+    await page.waitForTimeout(400)
+    await page.screenshot({ path: '/tmp/arthak/test-captures/bio-logo-departure.png' })
+    await page.waitForTimeout(100)
+    expect(new URL(page.url()).pathname).toBe('/posts/')
+    await page.waitForURL(url => url.pathname === '/')
+  })
 })
 
 test.describe('mobile bio alignment', () => {

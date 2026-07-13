@@ -375,7 +375,7 @@ export const renderPage = async (title, html, file = 'index.md', { layout = 'def
     .replace('{{topbar}}', topbar)
     .replace('{{lang}}', l.lang)
     .replace('{{title}}', escapeHtml(title))
-    .replace('{{css_version}}', cssVersion)
+    .replaceAll('{{css_version}}', cssVersion)
     .replace('{{canonical}}', getUrl(file))
     .replace('{{alternate_hreflang}}', alternateL.lang)
     .replace('{{alternate_href}}', getAlternateUrl(file))

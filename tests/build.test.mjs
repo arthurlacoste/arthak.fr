@@ -45,6 +45,20 @@ test('bio logo links to localized home and floats on interaction', async () => {
   assert.match(css, /@media\(prefers-reduced-motion:reduce\)/)
 })
 
+test('bio logo delays navigation during departure animation', async () => {
+  const fs = await import('node:fs/promises')
+  const page = await renderPage('Home', '<h1>Home</h1>')
+  const script = await fs.readFile('static/assets/js/site.min.js', 'utf8')
+  const css = await fs.readFile('style.css', 'utf8')
+
+  assert.match(page, /<script src="\/assets\/js\/site\.min\.js\?v=[a-f0-9]+" defer><\/script>/)
+  assert.match(script, /e\.preventDefault\(\)/)
+  assert.match(script, /setTimeout\(\(\)=>location\.assign\(t\.href\),800\)/)
+  assert.match(css, /animation:avatar-depart \.8s cubic-bezier\(\.22,\.61,\.36,1\)/)
+  assert.match(css, /scale\(1\.65\)/)
+  assert.match(css, /@keyframes avatar-depart/)
+})
+
 
 test('keeps nested post output under public posts folder', () => {
   assert.equal(getOutputPath('posts/premier-signal.md'), 'public/posts/premier-signal/index.html')
