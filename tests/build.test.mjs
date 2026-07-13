@@ -100,8 +100,10 @@ test('home archive links stay canonical and localized', async () => {
 
   assert.match(english, /\[IRZ\]\(\/posts\/\)/)
   assert.match(english, /\[Vakarm\]\(\/rivers\/vakarm\/\)/)
+  assert.match(english, /\[Vivre sans voiture\]\(\/rivers\/vivre-sans-voiture\/\)/)
   assert.match(french, /\[IRZ\]\(\/fr\/posts\/\)/)
   assert.match(french, /\[Vakarm\]\(\/fr\/rivers\/vakarm\/\)/)
+  assert.match(french, /\[Vivre sans voiture\]\(\/fr\/rivers\/vivre-sans-voiture\/\)/)
   assert.doesNotMatch(french, /\[IRZ\]\(\/posts\/?\)/)
 })
 

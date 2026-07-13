@@ -17,5 +17,5 @@
 - 🧪 **[IRZ](/posts/)** — A personal blog and playground for my experiments, tools, and projects.
 
 - 💪 **[WorkoutLoop](https://arthurlacoste.github.io/workoutloop/)** — A small workout loop app for training without overthinking it.
-- 🚲 **[Vivre sans voiture](https://sansvoiture.fr/)** — An essay on daily life without a car.
+- 🚲 **[Vivre sans voiture](/rivers/vivre-sans-voiture/)** — An essay on daily life without a car.
 - 🎭 **[Vakarm](/rivers/vakarm/)** — A theatre piece I made in 2007.

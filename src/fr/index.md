@@ -17,5 +17,5 @@
 
 - 🧪 **[IRZ](/fr/posts/)** — Un blog personnel et un terrain de jeu pour mes expérimentations, outils et projets.
 
-- 🚲 **[Vivre sans voiture](https://sansvoiture.fr/)** — Un essai sur les alternatives à la voiture au quotidien.
+- 🚲 **[Vivre sans voiture](/fr/rivers/vivre-sans-voiture/)** — Un essai sur les alternatives à la voiture au quotidien.
 - 🎭 **[Vakarm](/fr/rivers/vakarm/)** — Une pièce de théâtre que j’ai créée en 2007.
