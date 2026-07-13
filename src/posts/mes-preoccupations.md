@@ -6,6 +6,7 @@ layout: post
 link: https://archives.irz.fr/mes-preoccupations/
 slug: mes-preoccupations
 title: My Concerns
+emoji: 💭
 wordpress_id: 12
 categories:
 - The site

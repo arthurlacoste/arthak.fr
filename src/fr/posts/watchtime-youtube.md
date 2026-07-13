@@ -5,6 +5,7 @@ updated: 2026-07-12
 layout: post
 slug: watchtime-youtube
 title: Pourquoi la réponse prend toujours huit minutes
+emoji: ⏱️
 archive: true
 categories:
   - Technologie

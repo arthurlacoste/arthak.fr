@@ -5,6 +5,7 @@ updated: 2026-07-12
 layout: post
 slug: inde
 title: Ce que l’Inde a cassé dans mes idées toutes faites
+emoji: 🇮🇳
 archive: true
 categories:
   - Parcours

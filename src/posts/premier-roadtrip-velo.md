@@ -5,6 +5,7 @@ updated: 2026-07-12
 layout: post
 slug: premier-roadtrip-velo
 title: My First Bike Road Trip
+emoji: 🚲
 archive: true
 categories:
 - Routes

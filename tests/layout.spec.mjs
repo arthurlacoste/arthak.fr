@@ -22,6 +22,81 @@ test.describe('localized floating bio logo', () => {
   }
 })
 
+test.describe('mobile bio alignment', () => {
+  test.use({ viewport: { width: 375, height: 812 } })
+
+  test('aligns logo and name at top, with location below name', async ({ page }) => {
+    await page.goto('/')
+
+    const logo = await page.locator('.avatar-link').boundingBox()
+    const name = await page.locator('.ascii-name').boundingBox()
+    const location = await page.locator('.location').boundingBox()
+    const intro = await page.locator('.intro').boundingBox()
+
+    expect(Math.abs(logo.y - name.y)).toBeLessThan(2)
+    expect(location.x).toBeGreaterThan(name.x - 2)
+    expect(location.y).toBeGreaterThan(name.y + name.height - 2)
+    expect(location.y - (name.y + name.height)).toBeLessThan(8)
+    expect(intro.y).toBeGreaterThan(logo.y + logo.height + 18)
+    await page.locator('.bio').screenshot({ path: '/tmp/arthak/test-captures/mobile-bio-alignment.png' })
+  })
+})
+
+test.describe('social links and navigation targets', () => {
+  test('social links align left with translations at desktop bottom', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 })
+    await page.goto('/')
+    const footer = page.locator('.social-footer')
+    const box = await footer.boundingBox()
+
+    await expect(footer).toHaveCSS('position', 'fixed')
+    const translations = await page.locator('.top-language-switch').boundingBox()
+    expect(box.y + box.height).toBeGreaterThan(850)
+    const twitterLink = footer.locator('a').first()
+    const twitter = await twitterLink.boundingBox()
+    const textBox = await twitterLink.evaluate(node => {
+      const range = document.createRange()
+      range.selectNodeContents(node)
+      const { x, width } = range.getBoundingClientRect()
+      return { x, width }
+    })
+    expect(Math.abs(textBox.x - translations.x)).toBeLessThan(2)
+    expect(textBox.x - twitter.x).toBeGreaterThanOrEqual(13)
+    expect(twitter.width - textBox.width - (textBox.x - twitter.x)).toBeGreaterThanOrEqual(27)
+    await footer.screenshot({ path: '/tmp/arthak/test-captures/social-links-desktop.png' })
+  })
+
+  test('social links are centered in mobile footer', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 812 })
+    await page.goto('/')
+    const footer = page.locator('.social-footer')
+    const links = footer.locator('.social-links')
+
+    await expect(footer).toHaveCSS('position', 'static')
+    await expect(links).toHaveCSS('justify-content', 'center')
+    await footer.scrollIntoViewIfNeeded()
+    await footer.screenshot({ path: '/tmp/arthak/test-captures/social-links-mobile.png' })
+  })
+
+  test('social links switch to footer below 1220px', async ({ page }) => {
+    await page.setViewportSize({ width: 1100, height: 800 })
+    await page.goto('/')
+
+    await expect(page.locator('.social-footer')).toHaveCSS('position', 'static')
+    await expect(page.locator('.social-links')).toHaveCSS('flex-direction', 'row')
+  })
+
+  test('topbar links keep text position with larger hit areas', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 })
+    await page.goto('/')
+    const link = page.locator('.top-nav a').first()
+    const box = await link.boundingBox()
+    const fontSize = Number.parseFloat(await link.evaluate(node => getComputedStyle(node).fontSize))
+
+    expect(box.height).toBeGreaterThan(fontSize + 12)
+  })
+})
+
 test.describe('English home latest posts', () => {
   test.use({ viewport: { width: 1440, height: 900 } })
 
@@ -41,18 +116,13 @@ test.describe('posts page – desktop (1440px)', () => {
     await page.goto(POSTS_URL)
   })
 
-  test('date is to the left of the title', async ({ page }) => {
-    const item = page.locator('.post-item').first()
-    const dateBox = await item.locator('.post-date').boundingBox()
-    const titleBox = await item.locator('a').boundingBox()
-    expect(titleBox.x).toBeGreaterThan(dateBox.x + dateBox.width - 10)
-  })
+  test('uses emoji, linked title, then unstyled date', async ({ page }) => {
+    const item = page.locator('.posts-list li').first()
 
-  test('date is vertically aligned with title', async ({ page }) => {
-    const item = page.locator('.post-item').first()
-    const titleBox = await item.locator('a').boundingBox()
-    const dateBox = await item.locator('.post-date').boundingBox()
-    expect(Math.abs(dateBox.y - titleBox.y)).toBeLessThan(10)
+    await expect(item).toContainText('🎮')
+    await expect(item.locator('strong a')).toHaveAttribute('href', '/fr/posts/pong/')
+    await expect(item.locator('.post-date')).toHaveCount(0)
+    await page.locator('.posts-list').screenshot({ path: '/tmp/arthak/test-captures/posts-fr-emojis.png' })
   })
 })
 

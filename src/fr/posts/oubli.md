@@ -5,6 +5,7 @@ updated: 2026-07-12
 layout: post
 slug: oubli
 title: Les systèmes qui comptent sur notre oubli
+emoji: 🧾
 archive: true
 categories:
   - Consommation

@@ -6,6 +6,7 @@ updated: 2026-07-12
 layout: post
 slug: wake-up-neo-matrix
 title: Wake up, Neo
+emoji: 🕶️
 archive: true
 categories:
 - Parcours

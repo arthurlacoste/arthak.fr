@@ -6,6 +6,7 @@ layout: post
 link: https://archives.irz.fr/premiere-fois/
 slug: premiere-fois
 title: First Time
+emoji: 🌱
 wordpress_id: 1438453092
 categories:
 - Journey

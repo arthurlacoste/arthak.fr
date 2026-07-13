@@ -6,6 +6,7 @@ layout: post
 link: https://archives.irz.fr/bresil-mon-premier-voyage/
 slug: bresil-mon-premier-voyage
 title: '[Brazil] My first trip'
+emoji: 🇧🇷
 wordpress_id: 1438448936
 categories:
 - Journeys

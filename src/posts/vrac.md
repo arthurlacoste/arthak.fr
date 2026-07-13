@@ -5,6 +5,7 @@ updated: 2026-07-12
 layout: post
 slug: vrac
 title: Bulk doesn't always eliminate packaging
+emoji: ♻️
 archive: true
 categories:
   - Zero waste

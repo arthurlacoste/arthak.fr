@@ -5,6 +5,7 @@ updated: 2026-07-12
 layout: post
 slug: rangement
 title: What we keep when we throw away an object
+emoji: 🧹
 archive: true
 categories:
   - Journey

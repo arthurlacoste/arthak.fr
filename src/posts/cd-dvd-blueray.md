@@ -4,7 +4,8 @@ date: 2014-01-15
 updated: 2026-07-12  
 layout: post  
 slug: arrete-possede-films  
-title: When We Stopped Owning Our Films  
+title: When We Stopped Owning Our Films
+emoji: 📀
 archive: true  
 categories:
 - Technology

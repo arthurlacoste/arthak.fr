@@ -1,5 +1,6 @@
 ---
 title: Up for a vote
+emoji: 🗳️
 date: 2019-07-02
 updated: 2026-07-13
 layout: post

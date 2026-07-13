@@ -5,6 +5,7 @@ updated: 2026-07-12
 layout: post
 slug: oubli
 title: The systems that rely on our forgetfulness
+emoji: 🧾
 archive: true
 categories:
   - Consumption

@@ -5,6 +5,7 @@ updated: 2026-07-12
 layout: post
 slug: cadeau
 title: Le meilleur cadeau tient parfois sur une feuille
+emoji: 🎁
 archive: true
 categories:
   - Parcours
