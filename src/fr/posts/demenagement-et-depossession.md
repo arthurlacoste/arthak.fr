@@ -5,6 +5,7 @@ updated: 2026-07-12
 layout: post
 slug: demenagement-et-depossession
 title: Déménagement et dépossession
+emoji: 📦
 archive: true
 categories:
 - Parcours

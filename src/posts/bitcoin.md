@@ -6,6 +6,7 @@ layout: post
 link: https://archives.irz.fr/kraken-bitcoin/
 slug: aujourdhui-jai-achete-mes-premiers-bitcoins
 title: Today I Bought My First Bitcoins
+emoji: 🪙
 wordpress_id: 1438449367
 categories:
 - Consumer

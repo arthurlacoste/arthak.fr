@@ -7,6 +7,7 @@ layout: post
 link: https://archives.irz.fr/aujourdhui-jai-signe-un-billet-de-banque/
 slug: aujourdhui-jai-signe-un-billet-de-banque
 title: Today I Signed a Banknote
+emoji: 💶
 wordpress_id: 858
 categories:
 - Essentials

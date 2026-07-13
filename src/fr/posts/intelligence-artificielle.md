@@ -6,6 +6,7 @@ layout: post
 link: https://archives.irz.fr/intelligence-artificielle/
 slug: intelligence-artificielle
 title: Pensée sur un programme d'intelligence artificielle
+emoji: 🧠
 wordpress_id: 1438447744
 categories:
 - Logiciels

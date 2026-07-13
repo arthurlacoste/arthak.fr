@@ -7,6 +7,7 @@ layout: post
 link: https://archives.irz.fr/premier-roadtrip-velo/
 slug: premier-roadtrip-velo
 title: Mon premier road trip à vélo
+emoji: 🚲
 wordpress_id: 1438459884
 archive: true
 categories:

@@ -2,28 +2,21 @@
 
 Réponse par défaut : mode `caveman`. Phrases courtes, directes, techniques, sans remplissage. Sauf demande `normal mode` / `stop caveman`, ou si sécurité, action irréversible, clarification nécessaire.
 
+Pour écrire un logbook : src/fr/logbook.md , écrire au début du fichier, ne pas modifier les entrées existantes. Structure : "## <a id="yy-yy-dd-slug"></a>JJ mois YYYY,titre
+Texte 200 mots max à peu près"
+
 ## Développement
 
 - Fichiers courts ou moyens. Une responsabilité claire.
-- UI simple : 50 à 150 lignes.
-- Module ou service : 150 à 400 lignes.
-- Maximum 400 à 700 lignes si cohérent.
-- Au-delà de 700 lignes : envisager une découpe.
-- Au-delà de 1 000 lignes : découper sauf raison forte.
 - Organisation par fonctionnalité.
 - Éviter les gros dossiers ou modules `utils`, `helpers`, `common` ou `misc`.
 - Ajouter des tests unitaires après développement.
-- Utiliser PHPUnit pour les parties PHP.
 - Si une UI ou un formulaire le justifie : ajouter un test browserless avec captures.
-- En local : ne jamais envoyer de mails clients. Utiliser par exemple `arthak+cl@gmail.com`.
-- Si un appel JSON ou YAML legacy gère des données, même comme fallback : le remplacer immédiatement par MySQL.
 - Aucun CSS ou JavaScript inline.
-- CSS dans `src/css/home-light.css` ou les sous-composants adaptés.
-- JavaScript dans `assets/js/site.min.js` ou un autre bundle adapté.
 
 ## Compte rendu local de fin
 
-- Après développement, créer dans `/tmp/arthak/` un fichier HTML commençant par `YY-MM-JJ-`.
+- Après développement, necréer dans `/tmp/arthak/` un fichier HTML commençant par `YY-MM-JJ-`.
 - Documenter : travail réalisé, raisons, fichiers concernés, contexte, risques et informations utiles pour un autre agent.
 - Placer les captures de tests utiles dans `/tmp/arthak/test-captures/`.
 - Proposer jusqu’à cinq axes de progression fonctionnelle ou sécurité.

@@ -5,6 +5,7 @@ updated: 2026-07-12
 layout: post
 slug: demenagement-et-depossession
 title: Moving and Dispossession
+emoji: 📦
 archive: true
 categories:
 - Journey

@@ -195,7 +195,10 @@ const formatMonthYear = iso => {
 
 const postLine = (post, isFrench) => {
   const date = isFrench ? formatDateFr(post.date) : formatDate(post.date)
-  return `<div class="post-item"><span class="post-date">${date}</span><a href="${post.url}">${escapeHtml(post.title)}</a></div>`
+  const fallbackEmojis = ['🧪', '🛠️', '💡', '🧭', '📝', '⚡', '🎨', '🔍', '🚀', '🧩']
+  const emojiIndex = [...post.file].reduce((sum, character) => sum + character.codePointAt(0), 0) % fallbackEmojis.length
+  const emoji = post.emoji === false ? '' : `${post.emoji || fallbackEmojis[emojiIndex]} `
+  return `<li>${emoji}<strong><a href="${post.url}">${escapeHtml(post.title)}</a></strong> — ${date}</li>`
 }
 
 export const renderLatestPosts = async (isFrench, limit = 5) => {
@@ -206,15 +209,7 @@ export const renderLatestPosts = async (isFrench, limit = 5) => {
   const posts = await Promise.all(files.map(getPostMeta))
   posts.sort((a, b) => (b.date || '').localeCompare(a.date || '') || a.title.localeCompare(b.title))
 
-  const emojis = ['🧪', '🛠️', '💡', '🧭', '📝', '⚡', '🎨', '🔍', '🚀', '🧩']
-  const item = post => {
-    const emojiIndex = [...post.file].reduce((sum, character) => sum + character.codePointAt(0), 0) % emojis.length
-    const date = isFrench ? formatDateFr(post.date) : formatDate(post.date)
-    const emoji = post.emoji === false ? '' : `${post.emoji || emojis[emojiIndex]} `
-    return `<li>${emoji}<strong><a href="${post.url}">${escapeHtml(post.title)}</a></strong> — ${date}</li>`
-  }
-
-  return `<ul class="home-posts">\n${posts.slice(0, limit).map(item).join('\n')}\n</ul>`
+  return `<ul class="home-posts">\n${posts.slice(0, limit).map(post => postLine(post, isFrench)).join('\n')}\n</ul>`
 }
 
 const paginationNav = (page, totalPages, baseUrl) => {
@@ -260,7 +255,7 @@ export const buildPostsPages = async isFrench => {
     const items = slice.map(post => postLine(post, isFrench)).join('\n')
     const nav = paginationNav(i + 1, totalPages, baseUrl)
     const heading = i === 0 ? `# ${title}\n\n` : ''
-    const markdown = `${heading}<div class="posts-list">\n${items}\n</div>\n\n${nav}\n`
+    const markdown = `${heading}<ul class="posts-list">\n${items}\n</ul>\n\n${nav}\n`
     const outputPath = i === 0
       ? (isFrench ? 'public/fr/posts/index.html' : 'public/posts/index.html')
       : (isFrench ? `public/fr/posts/page/${i + 1}/index.html` : `public/posts/page/${i + 1}/index.html`)

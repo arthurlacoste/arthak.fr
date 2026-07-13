@@ -1,5 +1,6 @@
 ---
 title: L’école de Khajurâho
+emoji: 🏫
 date: 2019-06-23
 updated: 2026-07-13
 layout: post

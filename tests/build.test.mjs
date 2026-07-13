@@ -77,6 +77,24 @@ test('base skeleton wraps page layouts and shared topbar', async () => {
   assert.match(riversPage, /<header class="topbar">/)
 })
 
+test('renders social links and larger topbar click targets', async () => {
+  const fs = await import('node:fs/promises')
+  const page = await renderPage('Home', '<h1>Home</h1>')
+  const css = await fs.readFile('style.css', 'utf8')
+
+  assert.match(page, /<footer class="social-footer">/)
+  assert.match(page, /href="https:\/\/x\.com\/arthak_ttt"/)
+  assert.match(page, /href="https:\/\/www\.instagram\.com\/arthak\/"/)
+  assert.match(page, /href="https:\/\/www\.youtube\.com\/@arthakpixel"/)
+  assert.match(page, /href="https:\/\/github\.com\/arthurlacoste"/)
+  assert.doesNotMatch(page, /linkedin/i)
+  assert.match(page, /Twitter<\/a>[\s\S]*GitHub<\/a>[\s\S]*YouTube<\/a>[\s\S]*Instagram<\/a>/)
+  assert.match(css, /\.top-language-switch a,\.top-nav a\{padding:10px 8px;margin:-10px -8px\}/)
+  assert.match(css, /\.social-footer\{position:fixed;left:max\(24px,calc\(\(100vw - 1360px\)\/2\)\);bottom:24px/)
+  assert.match(css, /\.social-links a\{margin-left:-14px;padding:4px 28px 4px 14px/)
+  assert.match(css, /@media\(max-width:1219px\)\{\.social-footer\{position:static/)
+})
+
 
 test('renders favicon link', async () => {
   const page = await renderPage('test', '<h1>test</h1>')
@@ -228,19 +246,19 @@ test('french posts index returns paginated pages with title links', async () => 
   assert.ok(pages.length > 0)
   const first = pages[0]
   assert.match(first.markdown, /^# Articles/)
-  assert.match(first.markdown, /<div class="posts-list">/)
-  assert.match(first.markdown, /<a href="\/fr\/posts\/.*">.*<\/a>/)
+  assert.match(first.markdown, /<ul class="posts-list">/)
+  assert.match(first.markdown, /<li>🎮 <strong><a href="\/fr\/posts\/pong\/">.*<\/a><\/strong> — 12 juillet 2026<\/li>/)
   assert.equal(first.outputPath, 'public/fr/posts/index.html')
 })
 
 test('pagination: 80 posts per page', async () => {
   const pages = await buildPostsPages(true)
   for (let i = 0; i < pages.length - 1; i++) {
-    const lines = pages[i].markdown.split('\n').filter(l => l.includes('<div class="post-item">'))
+    const lines = pages[i].markdown.split('\n').filter(l => l.includes('<li>'))
     assert.equal(lines.length, 80)
   }
   const last = pages[pages.length - 1]
-  const lastLines = last.markdown.split('\n').filter(l => l.includes('<div class="post-item">'))
+  const lastLines = last.markdown.split('\n').filter(l => l.includes('<li>'))
   assert.ok(lastLines.length <= 80)
   assert.ok(lastLines.length > 0)
 })

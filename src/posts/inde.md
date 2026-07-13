@@ -5,6 +5,7 @@ updated: 2026-07-12
 layout: post
 slug: inde
 title: What India Broke in My Assumptions
+emoji: 🇮🇳
 archive: true
 categories:
   - Trip

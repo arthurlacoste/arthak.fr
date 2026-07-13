@@ -5,6 +5,7 @@ updated: 2026-07-12
 layout: post
 slug: jekyll-liquid
 title: "Liquid : quand une contrainte devient un langage"
+emoji: 💧
 archive: true
 categories:
   - Développement

@@ -5,6 +5,7 @@ updated: 2026-07-12
 layout: post
 slug: vrac
 title: Le vrac ne supprime pas toujours les emballages
+emoji: ♻️
 archive: true
 categories:
   - Zéro déchet

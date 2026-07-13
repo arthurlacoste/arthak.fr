@@ -5,6 +5,7 @@ updated: 2026-07-12
 layout: post
 slug: rangement
 title: Ce que l’on garde quand on jette un objet
+emoji: 🧹
 archive: true
 categories:
   - Parcours

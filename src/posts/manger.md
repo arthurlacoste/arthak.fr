@@ -5,6 +5,7 @@ updated: 2026-07-12
 layout: post
 slug: manger
 title: The Knacki Syndrome 36
+emoji: 🌭
 archive: true
 categories:
   - Journey

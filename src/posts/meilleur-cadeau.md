@@ -5,6 +5,7 @@ updated: 2026-07-12
 layout: post
 slug: cadeau
 title: The best gift sometimes fits on a sheet of paper
+emoji: 🎁
 archive: true
 categories:
   - Journey
