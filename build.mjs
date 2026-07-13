@@ -350,7 +350,7 @@ export const buildToc = html => {
       currentSection = heading.id
       return true
     }
-    return (subsectionCounts.get(currentSection) || 0) <= 3
+    return (subsectionCounts.get(currentSection) || 0) <= 5
   })
 
   const items = visibleHeadings.map(h => {

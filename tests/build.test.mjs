@@ -53,9 +53,11 @@ test('bio logo delays navigation during departure animation', async () => {
 
   assert.match(page, /<script src="\/assets\/js\/site\.min\.js\?v=[a-f0-9]+" defer><\/script>/)
   assert.match(script, /e\.preventDefault\(\)/)
-  assert.match(script, /setTimeout\(\(\)=>location\.assign\(t\.href\),800\)/)
-  assert.match(css, /animation:avatar-depart \.8s cubic-bezier\(\.22,\.61,\.36,1\)/)
-  assert.match(css, /scale\(1\.65\)/)
+  assert.match(script, /setTimeout\(\(\)=>location\.assign\(t\.href\),500\)/)
+  assert.doesNotMatch(script, /avatar-travel-x|avatar-arc-y/)
+  assert.match(css, /animation:avatar-depart-float \.5s cubic-bezier\(\.45,0,\.55,1\)/)
+  assert.match(css, /\.avatar-link--departing \.avatar\{animation:avatar-depart-spin \.5s linear/)
+  assert.match(css, /to\{transform:rotate\(360deg\)\}/)
   assert.match(css, /@keyframes avatar-depart/)
 })
 
@@ -369,13 +371,22 @@ test('buildToc extracts h2 and h3 headings', () => {
   assert.match(toc, /class="toc-sub"/)
 })
 
-test('buildToc hides h3 entries when a section has more than three', () => {
-  const html = '<h2 id="dense">Dense</h2><h3 id="one">One</h3><h3 id="two">Two</h3><h3 id="three">Three</h3><h3 id="four">Four</h3><h2 id="short">Short</h2><h3 id="kept">Kept</h3>'
+test('buildToc keeps h3 entries when a section has five', () => {
+  const html = '<h2 id="dense">Dense</h2><h3 id="one">One</h3><h3 id="two">Two</h3><h3 id="three">Three</h3><h3 id="four">Four</h3><h3 id="five">Five</h3>'
+  const toc = buildToc(html)
+
+  assert.match(toc, /href="#dense"/)
+  assert.match(toc, /href="#one"/)
+  assert.match(toc, /href="#five"/)
+})
+
+test('buildToc hides h3 entries when a section has more than five', () => {
+  const html = '<h2 id="dense">Dense</h2><h3 id="one">One</h3><h3 id="two">Two</h3><h3 id="three">Three</h3><h3 id="four">Four</h3><h3 id="five">Five</h3><h3 id="six">Six</h3><h2 id="short">Short</h2><h3 id="kept">Kept</h3>'
   const toc = buildToc(html)
 
   assert.match(toc, /href="#dense"/)
   assert.doesNotMatch(toc, /href="#one"/)
-  assert.doesNotMatch(toc, /href="#four"/)
+  assert.doesNotMatch(toc, /href="#six"/)
   assert.match(toc, /href="#short"/)
   assert.match(toc, /href="#kept"/)
 })

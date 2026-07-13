@@ -21,15 +21,15 @@ test.describe('localized floating bio logo', () => {
     })
   }
 
-  test('crosses the screen for 800ms before opening localized home', async ({ page }) => {
+  test('spins and floats for 500ms before opening localized home', async ({ page }) => {
     await page.goto('/posts/')
     const logo = page.locator('.avatar-link')
 
     await logo.click()
     await expect(logo).toHaveClass(/avatar-link--departing/)
-    await page.waitForTimeout(400)
+    await page.waitForTimeout(250)
     await page.screenshot({ path: '/tmp/arthak/test-captures/bio-logo-departure.png' })
-    await page.waitForTimeout(100)
+    await page.waitForTimeout(50)
     expect(new URL(page.url()).pathname).toBe('/posts/')
     await page.waitForURL(url => url.pathname === '/')
   })
@@ -193,6 +193,13 @@ test.describe('rivers page – desktop (1440px)', () => {
     await expect(page.locator(target)).toHaveCount(1)
     await link.click()
     expect(new URL(page.url()).hash).toBe(target)
+  })
+
+  test('toc keeps five h3 entries per section', async ({ page }) => {
+    const subsections = page.locator('.rivers-toc .toc-sub')
+
+    await expect(subsections).toHaveCount(15)
+    await page.locator('.rivers-toc').screenshot({ path: '/tmp/arthak/test-captures/rivers-toc-five-h3.png' })
   })
 })
 
