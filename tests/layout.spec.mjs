@@ -22,6 +22,26 @@ test.describe('localized floating bio logo', () => {
   }
 })
 
+test.describe('mobile bio alignment', () => {
+  test.use({ viewport: { width: 375, height: 812 } })
+
+  test('aligns logo and name at top, with location below name', async ({ page }) => {
+    await page.goto('/')
+
+    const logo = await page.locator('.avatar-link').boundingBox()
+    const name = await page.locator('.ascii-name').boundingBox()
+    const location = await page.locator('.location').boundingBox()
+    const intro = await page.locator('.intro').boundingBox()
+
+    expect(Math.abs(logo.y - name.y)).toBeLessThan(2)
+    expect(location.x).toBeGreaterThan(name.x - 2)
+    expect(location.y).toBeGreaterThan(name.y + name.height - 2)
+    expect(location.y - (name.y + name.height)).toBeLessThan(8)
+    expect(intro.y).toBeGreaterThan(logo.y + logo.height + 18)
+    await page.locator('.bio').screenshot({ path: '/tmp/arthak/test-captures/mobile-bio-alignment.png' })
+  })
+})
+
 test.describe('social links and navigation targets', () => {
   test('social links align left with translations at desktop bottom', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 })
