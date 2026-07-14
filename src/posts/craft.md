@@ -1,7 +1,7 @@
 ---
 title: What Remains of the Craft
 emoji: ✂️
-date: 2026-07-13
+date: 2026-06-01
 layout: post
 slug: what-remains-of-the-craft
 categories:

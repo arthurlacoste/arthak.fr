@@ -139,6 +139,31 @@ test('home contains project categories and language toggle', async () => {
   assert.match(markdown, /MCPRelay/)
 })
 
+test('English home follows the French content order', async () => {
+  const english = await readFile('src/index.md', 'utf8')
+  const orderedLabels = [
+    'Tattooing',
+    'Cellophane & Vaseline',
+    'Studio Pixel',
+    '## Rivers',
+    'Living without a car',
+    'Vakarm',
+    '## Posts',
+    '## Open source',
+    'Useless Skills',
+    'MCPRelay',
+    'Amazon 3D Model Parser',
+    'WorkoutLoop',
+    'Winegold',
+    'Listme',
+  ]
+
+  const positions = orderedLabels.map(label => english.indexOf(label))
+  assert.ok(positions.every(position => position >= 0))
+  assert.deepEqual(positions, positions.toSorted((a, b) => a - b))
+  assert.doesNotMatch(english, /## Old projects/)
+})
+
 test('home river links stay canonical and localized', async () => {
   const fs = await import('node:fs/promises')
   const english = await fs.readFile('src/index.md', 'utf8')
@@ -230,6 +255,19 @@ C'était en 2009.
   assert.equal(data.excerpt, 'Le jeu de mon frère')
   assert.doesNotMatch(body, /title: Pong 2009/)
   assert.match(body, /sortie/)
+})
+
+test('craft translations share emoji and publication date', async () => {
+  const [frenchMarkdown, englishMarkdown] = await Promise.all([
+    readFile('src/fr/posts/craft.md', 'utf8'),
+    readFile('src/posts/craft.md', 'utf8'),
+  ])
+  const [french] = parseFrontmatter(frenchMarkdown)
+  const [english] = parseFrontmatter(englishMarkdown)
+
+  assert.equal(english.emoji, french.emoji)
+  assert.equal(english.date, '2026-06-01')
+  assert.equal(english.date, french.date)
 })
 
 test('pong has matching French and English source pages', async () => {
