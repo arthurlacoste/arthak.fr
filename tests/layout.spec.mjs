@@ -237,3 +237,17 @@ test.describe('rivers page – mobile (375px)', () => {
     expect(box.width).toBeGreaterThan(300)
   })
 })
+
+
+test.describe('dark mode', () => {
+  test.use({ colorScheme: 'dark', viewport: { width: 1440, height: 900 } })
+
+  test('uses the dark palette and preserves readable links', async ({ page }) => {
+    await page.goto('/')
+
+    await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(23, 23, 23)')
+    await expect(page.locator('body')).toHaveCSS('color', 'rgb(241, 240, 235)')
+    await expect(page.locator('.location')).toHaveCSS('color', 'rgb(170, 167, 159)')
+    await page.screenshot({ path: '/tmp/arthak/test-captures/dark-mode-home.png', fullPage: true })
+  })
+})

@@ -45,6 +45,17 @@ test('bio logo links to localized home and floats on interaction', async () => {
   assert.match(css, /@media\(prefers-reduced-motion:reduce\)/)
 })
 
+test('supports the operating system dark color scheme', async () => {
+  const fs = await import('node:fs/promises')
+  const css = await fs.readFile('style.css', 'utf8')
+
+  assert.match(css, /:root\{color-scheme:light dark;/)
+  assert.match(css, /@media\(prefers-color-scheme:dark\)\{:root\{--bg:#171717;/)
+  assert.match(css, /--text:#f1f0eb;/)
+  assert.match(css, /--accent:#f0b429;/)
+  assert.match(css, /box-shadow:0 2px 8px var\(--shadow\)/)
+})
+
 test('bio logo delays navigation during departure animation', async () => {
   const fs = await import('node:fs/promises')
   const page = await renderPage('Home', '<h1>Home</h1>')
