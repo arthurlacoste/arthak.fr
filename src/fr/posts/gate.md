@@ -3,7 +3,7 @@ title: "J'ai contourné ChatGPT pour coder à l'infini pour 20 $/mois"
 date: 2026-07-08
 emoji: 🤖
 excerpt: J’ai construit une passerelle MCP locale pour relier ChatGPT dans le navigateur à mon ordinateur et continuer à travailler quand les outils de code dédiés atteignent leurs limites.
-slug: mcprelay
+slug: gate
 categories:
 - Développement
 - Intelligence artificielle
@@ -28,10 +28,10 @@ Mais au bout du compte, le meilleur modèle facilement disponible reste souvent 
 
 Le souci, c’est qu’il ne peut pas vraiment toucher ma machine.
 
-Donc j’ai construit [MCPRelay](https://github.com/arthurlacoste/MCPRelay).
+Donc j’ai construit [Gate](https://github.com/arthurlacoste/Gate).
 
 C’est une passerelle MCP locale. Elle permet à ChatGPT de lancer des commandes, lire des fichiers, prendre des captures d’écran, piloter un navigateur et utiliser plusieurs outils sur mon ordinateur.
 
-MCPRelay ne me donne pas des tokens illimités. Il me permet surtout de mieux utiliser ce que je paie déjà, au lieu d’ajouter immédiatement une nouvelle facture.
+Gate ne me donne pas des tokens illimités. Il me permet surtout de mieux utiliser ce que je paie déjà, au lieu d’ajouter immédiatement une nouvelle facture.
 
-[Voir MCPRelay sur GitHub](https://github.com/arthurlacoste/MCPRelay)
+[Voir Gate sur GitHub](https://github.com/arthurlacoste/Gate)

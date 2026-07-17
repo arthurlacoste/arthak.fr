@@ -16,7 +16,7 @@
 ## Open source
 
 - 🎯 **[Useless Skills](https://github.com/arthurlacoste/useless-skills)** — A local dashboard that aggregates skill usage across AI agents.
-- 🔗 **[MCPRelay](https://github.com/arthurlacoste/MCPRelay)** — A local MCP gateway with built-in OAuth.
+- 🔗 **[Gate](https://github.com/arthurlacoste/Gate)** — A local MCP gateway with built-in OAuth.
 - 📦 **[Amazon 3D Model Parser](https://app.irz.fr/3damazon/)** — A parser for extracting Amazon 3D model data.
 - 💪 **[WorkoutLoop](https://arthurlacoste.github.io/workoutloop/)** — A small workout loop app for training without overthinking it.
 - 🍷 **[Winegold](https://winegold.irz.fr/)** — An open-source drag and drop tool built with web technology.

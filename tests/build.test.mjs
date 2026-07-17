@@ -147,7 +147,7 @@ test('home contains project categories and language toggle', async () => {
   assert.doesNotMatch(markdown, /data-lang-button/)
   assert.match(markdown, /Cellophane & Vaseline/)
   assert.match(markdown, /Winegold/)
-  assert.match(markdown, /MCPRelay/)
+  assert.match(markdown, /Gate/)
 })
 
 test('English home follows the French content order', async () => {
@@ -162,7 +162,7 @@ test('English home follows the French content order', async () => {
     '## Posts',
     '## Open source',
     'Useless Skills',
-    'MCPRelay',
+    'Gate',
     'Amazon 3D Model Parser',
     'WorkoutLoop',
     'Winegold',
@@ -234,7 +234,7 @@ test('English home renders five latest English posts', async () => {
   assert.equal(items.length, 5)
   assert.match(latestPosts, /<ul class="home-posts">/)
   assert.match(latestPosts, /<li>🎮 <strong><a href="\/posts\/pong\//)
-  assert.match(latestPosts, /<li>🤖 <strong><a href="\/posts\/mcprelay\//)
+  assert.match(latestPosts, /<li>🤖 <strong><a href="\/posts\/gate\//)
   assert.match(latestPosts, /<li>🥕 <strong><a href="\/posts\/douze-kilos-de-carottes\//)
   assert.match(latestPosts, /<\/a><\/strong> — \d{4}-\d{2}-\d{2}<\/li>/)
   assert.doesNotMatch(latestPosts, /href="\/fr\/posts\//)
@@ -523,4 +523,12 @@ test('renders magazine footnotes with backlinks', () => {
 
 test('leaves unknown footnote references untouched', () => {
   assert.match(renderMarkdown('Missing[^404]'), /\[\^404\]/)
+})
+
+test('keeps legacy MCPRelay article URLs as static redirects', async () => {
+  const english = await readFile('static/posts/mcprelay/index.html', 'utf8')
+  const french = await readFile('static/fr/posts/mcprelay/index.html', 'utf8')
+
+  assert.match(english, /url=\/posts\/gate\//)
+  assert.match(french, /url=\/fr\/posts\/gate\//)
 })

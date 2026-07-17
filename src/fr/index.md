@@ -14,7 +14,7 @@
 
 ## Projets Open Source
 - 🎯 **[Useless Skills](https://github.com/arthurlacoste/useless-skills)** — Un tableau de bord local qui agrège l'usage des skills à travers les agents IA.
-- 🔗 **[MCPRelay](https://github.com/arthurlacoste/MCPRelay)** — Une passerelle MCP locale avec OAuth intégrée.
+- 🔗 **[Gate](https://github.com/arthurlacoste/Gate)** — Une passerelle MCP locale avec OAuth intégrée.
 - 📦 **[Amazon 3D Model Parser](https://app.irz.fr/3damazon/)** — Un parser pour extraire des données de modèles 3D Amazon. 
 - 💪 **[WorkoutLoop](https://arthurlacoste.github.io/workoutloop/)** — Une petite app de boucle d’entraînement, pour s’y mettre sans trop réfléchir.
 - 🍷 **[Winegold](https://github.com/arthurlacoste/winegold)** — Un outil open-source de drag and drop construit avec des technologies web.

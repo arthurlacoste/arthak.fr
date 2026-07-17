@@ -3,7 +3,7 @@ title: "I bypassed ChatGPT to code forever for $20/month"
 date: 2026-07-08
 emoji: 🤖
 excerpt: I built a local MCP gateway to connect ChatGPT in the browser to my computer and keep working when dedicated coding tools hit their limits.
-slug: mcprelay
+slug: gate
 categories:
 - Development
 - Artificial intelligence
@@ -28,10 +28,10 @@ But in the end, the best easily available model is often still the one I am alre
 
 The problem is that it cannot really touch my machine.
 
-So I built [MCPRelay](https://github.com/arthurlacoste/MCPRelay).
+So I built [Gate](https://github.com/arthurlacoste/Gate).
 
 It is a local MCP gateway. It allows ChatGPT to run commands, read files, take screenshots, control a browser, and use several tools on my computer.
 
-MCPRelay does not give me unlimited tokens. It mostly lets me make better use of what I already pay for instead of immediately adding another bill.
+Gate does not give me unlimited tokens. It mostly lets me make better use of what I already pay for instead of immediately adding another bill.
 
-[View MCPRelay on GitHub](https://github.com/arthurlacoste/MCPRelay)
+[View Gate on GitHub](https://github.com/arthurlacoste/Gate)
