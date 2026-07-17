@@ -9,6 +9,10 @@
 - 🚲 **[Living without a car](/rivers/vivre-sans-voiture/)** (essay, 2018) — An essay on daily alternatives to the car.
 - 🎭 **[Vakarm](/rivers/vakarm/)** (theatre, 2007) — An absurd satire where everyone accuses others of their own failings.
 
+## Merge
+
+- ⚙️ **[Introduction to YAML](/merge/yaml/)** — A practical, modern guide to YAML syntax and its common traps.
+
 ## Posts
 
 {5 latest posts}

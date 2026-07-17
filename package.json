@@ -9,7 +9,11 @@
     "dev": "node scripts/local-cloud.mjs",
     "local:cloud": "node scripts/local-cloud.mjs",
     "archive:migrate": "node scripts/migrate-irz-archives.mjs",
-    "archive:check-images": "python3 scripts/check-irz-images.py"
+    "archive:check-images": "python3 scripts/check-irz-images.py",
+    "cf:dev": "wrangler dev --config worker/wrangler.jsonc",
+    "cf:deploy": "wrangler deploy --config worker/wrangler.jsonc",
+    "cf:migrate:local": "wrangler d1 migrations apply arthak-leaderboard --local --config worker/wrangler.jsonc",
+    "cf:migrate:remote": "wrangler d1 migrations apply arthak-leaderboard --remote --config worker/wrangler.jsonc"
   },
   "dependencies": {
     "marked": "^13.0.0",
@@ -17,6 +21,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.61.1",
-    "serve": "^14.2.4"
+    "serve": "^14.2.4",
+    "wrangler": "^4.112.0"
   }
 }

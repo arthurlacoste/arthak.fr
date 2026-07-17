@@ -1,0 +1,19 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "arthak-leaderboard",
+  "main": "src/index.js",
+  "compatibility_date": "2026-07-17",
+  "observability": { "enabled": true },
+  "vars": {
+    "ALLOWED_ORIGIN": "https://arthak.fr",
+    "COURSE_VERSION": "yaml-v1"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "arthak-leaderboard",
+      "database_id": "58d8d101-df83-49ed-93b2-70a360061161",
+      "migrations_dir": "migrations"
+    }
+  ]
+}

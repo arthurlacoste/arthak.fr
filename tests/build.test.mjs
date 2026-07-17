@@ -532,3 +532,33 @@ test('keeps legacy MCPRelay article URLs as static redirects', async () => {
   assert.match(english, /url=\/posts\/gate\//)
   assert.match(french, /url=\/fr\/posts\/gate\//)
 })
+
+test('builds the YAML Merge guide with the rivers layout', async () => {
+  const markdown = await readFile('src/merge/yaml.md', 'utf8')
+  const [data, body] = parseFrontmatter(markdown)
+
+  assert.equal(data.layout, 'rivers')
+  assert.match(body, /# Introduction to YAML/)
+  assert.match(body, /YAML 1\.2\.2 specification/)
+  assert.equal(getOutputName('merge/yaml.md'), 'merge/yaml/index.html')
+  assert.equal(getOutputName('fr/merge/yaml.md'), 'fr/merge/yaml/index.html')
+})
+
+test('YAML course contains ten quizzes and thirty questions', async () => {
+  const markdown = await readFile('src/merge/yaml.md', 'utf8')
+  assert.equal((markdown.match(/data-quiz="/g) || []).length, 10)
+  assert.equal((markdown.match(/data-question="/g) || []).length, 30)
+  assert.match(markdown, /data-course-progress/)
+  assert.match(markdown, /data-share-score/)
+})
+
+test('YAML dashboard compacts from the first quiz and mobile content stays bounded', async () => {
+  const script = await readFile('static/assets/js/yaml-quiz.js', 'utf8')
+  const css = await readFile('style.css', 'utf8')
+  assert.match(script, /firstQuiz\.getBoundingClientRect\(\)\.top <= 0/)
+  assert.match(script, /course-dashboard--compact/)
+  assert.match(css, /\.course-dashboard--compact\{position:fixed/)
+  assert.match(css, /\.rivers-content\{max-width:680px;min-width:0;width:100%\}/)
+  assert.match(css, /\.rivers-content pre\{max-width:100%;overflow-x:auto/)
+  assert.match(css, /\.rivers-shell\{width:100%;padding-inline:24px;overflow-x:clip\}/)
+})

@@ -2,6 +2,13 @@
 
 Mes expérimentations.
 
+## Structure du site
+
+- **Posts** — Les idées courtes, articles et billets de blog.
+- **Rivers** — Les essais longs, textes structurés et projets profonds.
+- **Merge** — Les contenus techniques, guides et documentation pratique.
+- **Logbook** — Les pensées quotidiennes et notes courtes datées.
+
 ## Commandes
 
 ```bash

@@ -23,3 +23,5 @@
 
 
 
+
+- ⚙️ **[Introduction au YAML](/fr/merge/yaml/)** — Un guide pratique et moderne de la syntaxe YAML et de ses pièges courants.
