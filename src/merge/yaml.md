@@ -218,7 +218,6 @@ modern_answer: true
   <fieldset class="quiz-question" data-question="c4q1" data-explanation="Quoting prevents implicit resolution as a boolean.">
     <legend>1. Why quote a value such as true?</legend><div class="quiz-answers">
       <button class="quiz-answer" type="button" data-answer="0" data-correct="true">To force it to remain a string</button>
-
       <button class="quiz-answer" type="button" data-answer="1" data-correct="false">To turn it into a number</button>
       <button class="quiz-answer" type="button" data-answer="2" data-correct="false">To create an anchor</button>
     </div><p class="quiz-feedback" data-feedback hidden aria-live="polite"></p>
