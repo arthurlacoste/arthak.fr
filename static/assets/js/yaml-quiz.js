@@ -2,6 +2,55 @@
   const root = document.querySelector('.rivers-content:has([data-yaml-course])')
   if (!root) return
 
+  const isFrench = location.pathname.startsWith('/fr/')
+  const copy = isFrench ? {
+    levels: ['Parseur patate', 'Débutant YAML', 'Mécano de config', 'Architecte d’automatisation', 'Magicien DevOps', 'Sage YAML', 'Génie YAML'],
+    correct: 'Correct.',
+    incorrect: 'Pas tout à fait.',
+    chapters: 'chapitres',
+    perfectChapters: 'chapitres parfaits',
+    streak: 'série',
+    best: 'meilleure',
+    result: (correct, total, best, stars) => `${correct} bonnes réponses sur ${total}. Meilleure série : ${best}. Chapitres parfaits : ${stars}.`,
+    share: (value, title) => `J’ai obtenu ${value}/10 — ${title} — au cours YAML.`,
+    shareTitle: 'Score YAML',
+    shared: 'Partagé',
+    copied: 'Copié',
+    shareButton: 'Partager le score',
+    loading: 'Chargement…',
+    unavailable: 'Classement indisponible.',
+    noScores: 'Aucun score. Soyez la première personne.',
+    verify: 'Terminez d’abord la vérification humaine.',
+    sending: 'Envoi…',
+    sendFailed: 'Échec de l’envoi',
+    scoreSent: score => `Score envoyé : ${score.toFixed(1)}/10.`,
+    submitFailed: 'Impossible d’envoyer le score.',
+    timerOff: 'Chronomètre désactivé',
+  } : {
+    levels: ['Potato Parser', 'YAML Beginner', 'Config Mechanic', 'Automation Builder', 'DevOps Wizard', 'YAML Sage', 'YAML Genius'],
+    correct: 'Correct.',
+    incorrect: 'Not quite.',
+    chapters: 'chapters',
+    perfectChapters: 'perfect chapters',
+    streak: 'streak',
+    best: 'best',
+    result: (correct, total, best, stars) => `${correct} correct answers out of ${total}. Best streak: ${best}. Perfect chapters: ${stars}.`,
+    share: (value, title) => `I scored ${value}/10 — ${title} — on the YAML course.`,
+    shareTitle: 'YAML score',
+    shared: 'Shared',
+    copied: 'Copied',
+    shareButton: 'Share score',
+    loading: 'Loading…',
+    unavailable: 'Leaderboard unavailable.',
+    noScores: 'No scores yet. Be the first.',
+    verify: 'Complete the human verification first.',
+    sending: 'Sending…',
+    sendFailed: 'Submission failed',
+    scoreSent: score => `Score submitted: ${score.toFixed(1)}/10.`,
+    submitFailed: 'Could not submit score.',
+    timerOff: 'Timer off',
+  }
+
   const storageKey = 'arthak-yaml-course-v1'
   const playerKey = 'arthak-yaml-player-v1'
   const apiBase = 'https://arthak-leaderboard.m-267.workers.dev'
@@ -72,13 +121,13 @@
   }
 
   function level(value) {
-    if (value < 2) return ['🥔', 'Parseur patate']
-    if (value < 4) return ['🐣', 'Débutant YAML']
-    if (value < 6) return ['🔧', 'Config Mechanic']
-    if (value < 8) return ['⚙️', 'Automation Builder']
-    if (value < 9) return ['🚀', 'DevOps Wizard']
-    if (value < 9.8) return ['🧙', 'Sage YAML']
-    return ['👑', 'Génie YAML']
+    if (value < 2) return ['🥔', copy.levels[0]]
+    if (value < 4) return ['🐣', copy.levels[1]]
+    if (value < 6) return ['🔧', copy.levels[2]]
+    if (value < 8) return ['⚙️', copy.levels[3]]
+    if (value < 9) return ['🚀', copy.levels[4]]
+    if (value < 9.8) return ['🧙', copy.levels[5]]
+    return ['👑', copy.levels[6]]
   }
 
   function chapterComplete(quiz) {
@@ -122,7 +171,7 @@
     })
     if (saved && feedback) {
       feedback.hidden = false
-      feedback.textContent = `${saved.correct ? 'Correct.' : 'Pas tout à fait.'} ${question.dataset.explanation}`
+      feedback.textContent = `${saved.correct ? copy.correct : copy.incorrect} ${question.dataset.explanation}`
     } else if (feedback) {
       feedback.hidden = true
       feedback.textContent = ''
@@ -140,11 +189,11 @@
 
     progress.value = completed
     progress.max = questions.length
-    progressText.textContent = `${completed}/${questions.length} questions · ${completeChapters}/${quizzes.length} chapitres`
+    progressText.textContent = `${completed}/${questions.length} questions · ${completeChapters}/${quizzes.length} ${copy.chapters}`
     scoreText.textContent = `${value.toFixed(1)} / 10`
     levelText.textContent = `${icon} ${title}`
-    streakText.textContent = `🔥 ${state.streak} streak · best ${state.bestStreak}`
-    starsText.textContent = `${'⭐'.repeat(stars)}${'☆'.repeat(quizzes.length - stars)} ${stars}/${quizzes.length} chapitres parfaits`
+    streakText.textContent = `🔥 ${state.streak} ${copy.streak} · ${copy.best} ${state.bestStreak}`
+    starsText.textContent = `${'⭐'.repeat(stars)}${'☆'.repeat(quizzes.length - stars)} ${stars}/${quizzes.length} ${copy.perfectChapters}`
     timerToggle.checked = state.timerEnabled
     retryButton.hidden = !answerEntries().some(([, answer]) => !answer.correct)
 
@@ -154,7 +203,7 @@
       result.querySelector('[data-result-icon]').textContent = icon
       result.querySelector('[data-result-title]').textContent = title
       result.querySelector('[data-result-score]').textContent = value.toFixed(1)
-      result.querySelector('[data-result-detail]').textContent = `${correctCount()} bonnes réponses sur ${questions.length}. Meilleure série : ${state.bestStreak}. Chapitres parfaits : ${stars}.`
+      result.querySelector('[data-result-detail]').textContent = copy.result(correctCount(), questions.length, state.bestStreak, stars)
       if (correctCount() === questions.length && !state.celebrated) {
         state.celebrated = true
         saveState()
@@ -196,13 +245,13 @@
     const [, title] = level(Number(value))
     const url = new URL(location.href)
     url.searchParams.set('score', value)
-    const text = `J’ai obtenu ${value}/10 — ${title} — au cours YAML.`
+    const text = copy.share(value, title)
     try {
-      if (navigator.share) await navigator.share({ title: 'Score YAML', text, url: url.toString() })
+      if (navigator.share) await navigator.share({ title: copy.shareTitle, text, url: url.toString() })
       else await navigator.clipboard.writeText(`${text} ${url}`)
-      shareButton.textContent = navigator.share ? 'Shared' : 'Copied'
+      shareButton.textContent = navigator.share ? copy.shared : copy.copied
     } catch {}
-    setTimeout(() => { shareButton.textContent = 'Share score' }, 1600)
+    setTimeout(() => { shareButton.textContent = copy.shareButton }, 1600)
   }
 
   function playerId() {
@@ -230,10 +279,10 @@
   }
 
   async function loadLeaderboard() {
-    leaderboardList.innerHTML = '<li>Loading…</li>'
+    leaderboardList.innerHTML = `<li>${copy.loading}</li>`
     try {
       const response = await fetch(`${apiBase}/api/courses/yaml/leaderboard?period=${leaderboardPeriod.value}&limit=20`)
-      if (!response.ok) throw new Error('Classement indisponible')
+      if (!response.ok) throw new Error(copy.unavailable)
       const data = await response.json()
       leaderboardList.replaceChildren(...data.entries.map(entry => {
         const item = document.createElement('li')
@@ -249,9 +298,9 @@
         item.append(name, score, time)
         return item
       }))
-      if (!data.entries.length) leaderboardList.innerHTML = '<li>No scores yet. Be the first.</li>'
+      if (!data.entries.length) leaderboardList.innerHTML = `<li>${copy.noScores}</li>`
     } catch {
-      leaderboardList.innerHTML = '<li>Classement indisponible.</li>'
+      leaderboardList.innerHTML = `<li>${copy.unavailable}</li>`
     }
   }
 
@@ -262,10 +311,10 @@
     if (!playerName) return
     const turnstileToken = scoreForm.querySelector('[name="cf-turnstile-response"]')?.value
     if (!turnstileToken) {
-      leaderboardStatus.textContent = 'Complete the human verification first.'
+      leaderboardStatus.textContent = copy.verify
       return
     }
-    leaderboardStatus.textContent = 'Envoi…'
+    leaderboardStatus.textContent = copy.sending
     localStorage.setItem(playerKey, playerName)
     try {
       const response = await fetch(`${apiBase}/api/courses/yaml/attempt`, {
@@ -280,19 +329,19 @@
         }),
       })
       const data = await response.json()
-      if (!response.ok) throw new Error(data.error || 'Échec de l’envoi')
-      leaderboardStatus.textContent = `Score envoyé : ${data.score.toFixed(1)}/10.`
+      if (!response.ok) throw new Error(data.error || copy.sendFailed)
+      leaderboardStatus.textContent = copy.scoreSent(data.score)
       if (window.turnstile) window.turnstile.reset()
       await loadLeaderboard()
     } catch (error) {
-      leaderboardStatus.textContent = error.message || 'Could not submit score.'
+      leaderboardStatus.textContent = error.message || copy.submitFailed
       if (window.turnstile) window.turnstile.reset()
     }
   }
 
   function updateTimer() {
     if (!state.timerEnabled) {
-      timerText.textContent = 'Chronomètre désactivé'
+      timerText.textContent = copy.timerOff
       return
     }
     const seconds = Math.max(0, Math.floor((Date.now() - state.startedAt) / 1000))
