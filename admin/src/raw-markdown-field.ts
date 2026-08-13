@@ -1,7 +1,7 @@
 import { fields } from '@keystatic/core'
 import type { ContentFormField, FormFieldInputProps } from '@keystatic/core'
 import { ActionButton, ButtonGroup } from '@keystar/ui/button'
-import { Flex } from '@keystar/ui/layout'
+import { Box, Flex } from '@keystar/ui/layout'
 import { TextArea } from '@keystar/ui/text-field'
 import { createElement, useState } from 'react'
 
@@ -40,16 +40,18 @@ export function rawMarkdownField(label = 'Content'): ContentFormField<MarkdownVa
       setMode('visual')
     }
 
-    const controls = createElement(ButtonGroup, null,
-      createElement(ActionButton, {
-        isDisabled: !visualAvailable,
-        isSelected: mode === 'visual',
-        onPress: showVisual,
-      }, 'Visual'),
-      createElement(ActionButton, {
-        isSelected: mode === 'source',
-        onPress: () => setMode('source'),
-      }, 'Source Markdown'),
+    const controls = createElement(Box, { paddingTop: 'regular', paddingX: 'regular' },
+      createElement(ButtonGroup, null,
+        createElement(ActionButton, {
+          isDisabled: !visualAvailable,
+          isSelected: mode === 'visual',
+          onPress: showVisual,
+        }, 'Visual'),
+        createElement(ActionButton, {
+          isSelected: mode === 'source',
+          onPress: () => setMode('source'),
+        }, 'Source Markdown'),
+      ),
     )
 
     const editor = mode === 'visual' && props.value.rich
