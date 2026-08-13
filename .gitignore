@@ -1,6 +1,10 @@
 node_modules/
+admin/.astro/
+admin/dist/
 public/
 originals/
 docs/
 .DS_Store
 .env
+
+admin/.wrangler/

@@ -1,0 +1,16 @@
+{
+  "name": "arthak-keystatic-admin",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^14.1.4",
+    "@keystatic/astro": "^5.2.0",
+    "@keystatic/core": "^0.6.5",
+    "astro": "^7.2.1"
+  }
+}
