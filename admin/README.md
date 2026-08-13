@@ -20,6 +20,15 @@ Required variables: `KEYSTATIC_GITHUB_CLIENT_ID`,
 `KEYSTATIC_GITHUB_CLIENT_SECRET`, `KEYSTATIC_SECRET`, and
 `PUBLIC_KEYSTATIC_GITHUB_APP_SLUG`.
 
+Create the GitHub OAuth App at <https://github.com/settings/applications/new>:
+
+- Homepage URL: `https://edit.arthak.fr`
+- Authorization callback URL: `https://edit.arthak.fr/api/keystatic/github/oauth/callback`
+
+Copy the generated client ID, client secret, and app slug into the three
+`KEYSTATIC_*` GitHub Actions secrets. The next push to `main` deploys them to
+the Worker.
+
 Cloudflare deployment:
 
 ```bash
