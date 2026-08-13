@@ -10,7 +10,16 @@ const postSchema = {
   emoji: fields.text({ label: 'Emoji', validation: { isRequired: false } }),
   excerpt: fields.text({ label: 'Excerpt', multiline: true, validation: { isRequired: false } }),
   comments: fields.checkbox({ label: 'Comments', defaultValue: true }),
-  content: fields.mdx({ label: 'Content' }),
+  archive: fields.ignored(),
+  categories: fields.ignored(),
+  header: fields.ignored(),
+  layout: fields.ignored(),
+  link: fields.ignored(),
+  post_format: fields.ignored(),
+  slug: fields.ignored(),
+  tags: fields.ignored(),
+  wordpress_id: fields.ignored(),
+  content: fields.mdx({ label: 'Content', extension: 'md' }),
 }
 
 export default config({
@@ -25,14 +34,14 @@ export default config({
     posts: collection({
       label: 'English posts',
       slugField: 'title',
-      path: '../src/posts/*',
+      path: 'src/posts/*',
       format: { contentField: 'content' },
       schema: postSchema,
     }),
     postsFr: collection({
       label: 'French posts',
       slugField: 'title',
-      path: '../src/fr/posts/*',
+      path: 'src/fr/posts/*',
       format: { contentField: 'content' },
       schema: postSchema,
     }),

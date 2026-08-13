@@ -13,7 +13,8 @@ npm run dev
 
 Open <http://localhost:4321/keystatic>.
 
-The deployed app uses GitHub storage and commits changes to the repository.
+The deployed app uses GitHub storage and commits changes to `src/posts/` and
+`src/fr/posts/` in the repository.
 The production URL is `https://edit.arthak.fr`.
 
 Required variables: `KEYSTATIC_GITHUB_CLIENT_ID`,
