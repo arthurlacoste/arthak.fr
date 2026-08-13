@@ -34,9 +34,9 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       - name: Configure Keystatic runtime secrets
         run: |
-          printf '%s' "$KEYSTATIC_GITHUB_CLIENT_ID" | npx wrangler secret put KEYSTATIC_GITHUB_CLIENT_ID --config dist/server/wrangler.json
-          printf '%s' "$KEYSTATIC_GITHUB_CLIENT_SECRET" | npx wrangler secret put KEYSTATIC_GITHUB_CLIENT_SECRET --config dist/server/wrangler.json
-          printf '%s' "$KEYSTATIC_SECRET" | npx wrangler secret put KEYSTATIC_SECRET --config dist/server/wrangler.json
+          if [ -n "$KEYSTATIC_GITHUB_CLIENT_ID" ]; then printf '%s' "$KEYSTATIC_GITHUB_CLIENT_ID" | npx wrangler secret put KEYSTATIC_GITHUB_CLIENT_ID --config dist/server/wrangler.json; fi
+          if [ -n "$KEYSTATIC_GITHUB_CLIENT_SECRET" ]; then printf '%s' "$KEYSTATIC_GITHUB_CLIENT_SECRET" | npx wrangler secret put KEYSTATIC_GITHUB_CLIENT_SECRET --config dist/server/wrangler.json; fi
+          if [ -n "$KEYSTATIC_SECRET" ]; then printf '%s' "$KEYSTATIC_SECRET" | npx wrangler secret put KEYSTATIC_SECRET --config dist/server/wrangler.json; fi
         working-directory: admin
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
