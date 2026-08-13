@@ -10,7 +10,7 @@ const postSchema = {
   emoji: fields.text({ label: 'Emoji', validation: { isRequired: false } }),
   excerpt: fields.text({ label: 'Excerpt', multiline: true, validation: { isRequired: false } }),
   comments: fields.checkbox({ label: 'Comments', defaultValue: true }),
-  content: fields.markdoc({ label: 'Content' }),
+  content: fields.mdx({ label: 'Content' }),
 }
 
 export default config({

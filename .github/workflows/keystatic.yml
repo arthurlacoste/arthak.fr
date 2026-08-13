@@ -32,3 +32,15 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      - name: Configure Keystatic runtime secrets
+        run: |
+          printf '%s' "$KEYSTATIC_GITHUB_CLIENT_ID" | npx wrangler secret put KEYSTATIC_GITHUB_CLIENT_ID --config dist/server/wrangler.json
+          printf '%s' "$KEYSTATIC_GITHUB_CLIENT_SECRET" | npx wrangler secret put KEYSTATIC_GITHUB_CLIENT_SECRET --config dist/server/wrangler.json
+          printf '%s' "$KEYSTATIC_SECRET" | npx wrangler secret put KEYSTATIC_SECRET --config dist/server/wrangler.json
+        working-directory: admin
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          KEYSTATIC_GITHUB_CLIENT_ID: ${{ secrets.KEYSTATIC_GITHUB_CLIENT_ID }}
+          KEYSTATIC_GITHUB_CLIENT_SECRET: ${{ secrets.KEYSTATIC_GITHUB_CLIENT_SECRET }}
+          KEYSTATIC_SECRET: ${{ secrets.KEYSTATIC_SECRET }}
