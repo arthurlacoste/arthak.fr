@@ -12,7 +12,8 @@ describe('rawMarkdownField', () => {
       slug: undefined,
     })
 
-    expect(value).toBe(source)
+    expect(value.raw).toBe(source)
+    expect(value.rich).toBeNull()
     expect(new TextDecoder().decode(field.serialize(value, { slug: undefined }).content)).toBe(source)
   })
 })

@@ -1,8 +1,7 @@
 import { collection, config, fields, singleton } from '@keystatic/core'
 import { rawMarkdownField } from './src/raw-markdown-field'
 
-const content = fields.markdoc({ label: 'Content', extension: 'md' })
-const rawContent = rawMarkdownField()
+const content = rawMarkdownField()
 
 const pageSchema = {
   title: fields.text({ label: 'Title', validation: { isRequired: false } }),
@@ -35,13 +34,13 @@ const riverSchema = {
 const mergeSchema = {
   title: fields.slug({ name: { label: 'Title' } }),
   layout: fields.text({ label: 'Layout', defaultValue: 'rivers' }),
-  content: rawContent,
+  content,
 }
 
 const rawPageSchema = {
   title: fields.text({ label: 'Title', validation: { isRequired: false } }),
   layout: fields.text({ label: 'Layout', validation: { isRequired: false } }),
-  content: rawContent,
+  content,
 }
 
 const postSchema = {
