@@ -17,6 +17,11 @@
 
 {5 latest posts}
 
+## Websites
+
+- 📦 **[Box](https://box.spel.cc/)** — Inventory management and stock forecasting for small teams.
+- 🎉 **[Copie Club](https://copie.club/)** — A fast clipboard for saving and copying notes in one click.
+
 ## Open source
 
 - 🎯 **[Useless Skills](https://github.com/arthurlacoste/useless-skills)** — A local dashboard that aggregates skill usage across AI agents.

@@ -12,6 +12,11 @@
 
 {5 articles récents}
 
+## Sites web
+
+- 📦 **[Box](https://box.spel.cc/)** — Gestion de stock et prévisions pour les petites équipes.
+- 🎉 **[Copie Club](https://copie.club/)** — Un presse-papiers rapide pour enregistrer et copier ses notes en un clic.
+
 ## Projets Open Source
 - 🎯 **[Useless Skills](https://github.com/arthurlacoste/useless-skills)** — Un tableau de bord local qui agrège l'usage des skills à travers les agents IA.
 - 🔗 **[Gate](https://github.com/arthurlacoste/Gate)** — Une passerelle MCP locale avec OAuth intégrée.

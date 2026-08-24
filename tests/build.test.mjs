@@ -160,6 +160,9 @@ test('English home follows the French content order', async () => {
     'Living without a car',
     'Vakarm',
     '## Posts',
+    '## Websites',
+    'Box',
+    'Copie Club',
     '## Open source',
     'Useless Skills',
     'Gate',
@@ -173,6 +176,14 @@ test('English home follows the French content order', async () => {
   assert.ok(positions.every(position => position >= 0))
   assert.deepEqual(positions, positions.toSorted((a, b) => a - b))
   assert.doesNotMatch(english, /## Old projects/)
+})
+
+test('home exposes Box and Copie Club as websites in both languages', async () => {
+  const english = await readFile('src/index.md', 'utf8')
+  const french = await readFile('src/fr/index.md', 'utf8')
+
+  assert.match(english, /## Websites[\s\S]*📦 \*\*\[Box\]\(https:\/\/box\.spel\.cc\/\)\*\*[\s\S]*🎉 \*\*\[Copie Club\]\(https:\/\/copie\.club\/\)\*\*[\s\S]*## Open source/)
+  assert.match(french, /## Sites web[\s\S]*📦 \*\*\[Box\]\(https:\/\/box\.spel\.cc\/\)\*\*[\s\S]*🎉 \*\*\[Copie Club\]\(https:\/\/copie\.club\/\)\*\*[\s\S]*## Projets Open Source/)
 })
 
 test('home river links stay canonical and localized', async () => {
