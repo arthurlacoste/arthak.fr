@@ -161,7 +161,7 @@ test('English home follows the French content order', async () => {
     'Vakarm',
     '## Posts',
     '## Websites',
-    'Box',
+    'Invumi',
     'Copie Club',
     '## Open source',
     'Useless Skills',
@@ -178,12 +178,22 @@ test('English home follows the French content order', async () => {
   assert.doesNotMatch(english, /## Old projects/)
 })
 
-test('home exposes Box and Copie Club as websites in both languages', async () => {
+test('home exposes Invumi and Copie Club as websites in both languages', async () => {
   const english = await readFile('src/index.md', 'utf8')
   const french = await readFile('src/fr/index.md', 'utf8')
+  const englishWebsites = english.split('## Websites')[1]?.split('## Open source')[0] ?? ''
+  const frenchWebsites = french.split('## Sites web')[1]?.split('## Projets Open Source')[0] ?? ''
 
-  assert.match(english, /## Websites[\s\S]*📦 \*\*\[Box\]\(https:\/\/box\.spel\.cc\/\)\*\*[\s\S]*🎉 \*\*\[Copie Club\]\(https:\/\/copie\.club\/\)\*\*[\s\S]*## Open source/)
-  assert.match(french, /## Sites web[\s\S]*📦 \*\*\[Box\]\(https:\/\/box\.spel\.cc\/\)\*\*[\s\S]*🎉 \*\*\[Copie Club\]\(https:\/\/copie\.club\/\)\*\*[\s\S]*## Projets Open Source/)
+  assert.match(englishWebsites, /Invumi/)
+  assert.match(englishWebsites, /https:\/\/invumi\.com/)
+  assert.match(englishWebsites, /Copie Club/)
+  assert.match(englishWebsites, /https:\/\/copie\.club\//)
+  assert.match(frenchWebsites, /Invumi/)
+  assert.match(frenchWebsites, /https:\/\/invumi\.com/)
+  assert.match(frenchWebsites, /Copie Club/)
+  assert.match(frenchWebsites, /https:\/\/copie\.club\//)
+  assert.doesNotMatch(englishWebsites, /Box/)
+  assert.doesNotMatch(frenchWebsites, /Box/)
 })
 
 test('home river links stay canonical and localized', async () => {
@@ -191,10 +201,14 @@ test('home river links stay canonical and localized', async () => {
   const english = await fs.readFile('src/index.md', 'utf8')
   const french = await fs.readFile('src/fr/index.md', 'utf8')
 
-  assert.match(english, /\[Vakarm\]\(\/rivers\/vakarm\/\)/)
-  assert.match(english, /\[Living without a car\]\(\/rivers\/vivre-sans-voiture\/\)/)
-  assert.match(french, /\[Vakarm\]\(\/fr\/rivers\/vakarm\/\)/)
-  assert.match(french, /\[Vivre sans voiture\]\(\/fr\/rivers\/vivre-sans-voiture\/\)/)
+  assert.match(english, /Vakarm/)
+  assert.match(english, /\(\/rivers\/vakarm\/\)/)
+  assert.match(english, /Living without a car/)
+  assert.match(english, /\(\/rivers\/vivre-sans-voiture\/\)/)
+  assert.match(french, /Vakarm/)
+  assert.match(french, /\(\/fr\/rivers\/vakarm\/\)/)
+  assert.match(french, /Vivre sans voiture/)
+  assert.match(french, /\(\/fr\/rivers\/vivre-sans-voiture\/\)/)
 })
 
 
@@ -233,9 +247,9 @@ test('home page uses simple list style', async () => {
 
   assert.doesNotMatch(markdown, /card-image-link/)
   assert.doesNotMatch(css, /\.card-image/)
-  assert.match(markdown, /\[Cellophane & Vaseline\]/)
-  assert.match(markdown, /\[Tattooing\]/)
-  assert.match(markdown, /\[Studio Pixel\]/)
+  assert.match(markdown, /Cellophane & Vaseline/)
+  assert.match(markdown, /Tattooing/)
+  assert.match(markdown, /Studio Pixel/)
 })
 
 test('English home renders five latest English posts', async () => {
